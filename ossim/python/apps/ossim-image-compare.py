@@ -1,7 +1,6 @@
 import sys
-#sys.path.append("/code/pyossim/swig/build")
-from lib.pyossim import *
-
+sys.path.append("./lib")
+from pyossim import *
 def pyossimImageCompare(argc,argv):
     if argc !=3:
         print "Usage: python ossim-image-compare.py <image1> <image2>";
