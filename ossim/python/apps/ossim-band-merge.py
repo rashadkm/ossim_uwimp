@@ -1,5 +1,5 @@
 import sys
-#sys.path.append("/code/pyossim/swig/build")
+sys.path.append("../lib")
 from lib.pyossim import *
 
 def pyossimBandMerge(argc,argv):

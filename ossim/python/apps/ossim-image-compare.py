@@ -1,5 +1,5 @@
 import sys
-sys.path.append("./lib")
+sys.path.append("../lib")
 from pyossim import *
 def pyossimImageCompare(argc,argv):
     if argc !=3:
@@ -66,23 +66,23 @@ def checkTiles(t1,t2):
 
     num_pixels = size1.x * size1.y
     for band in range(0,nbands1):
-        if stype == OSSIM_UINT8 or stype == OSSIM_SINT8:
+        if stype == PYOSSIM_UINT8 or stype == PYOSSIM_SINT8:
             buf1 = t1.getUcharBuf(band)
             buf2 = t2.getUcharBuf(band)
 
-        elif stype == OSSIM_UINT16 or stype == OSSIM_SINT16 or OSSIM_USHORT11:
+        elif stype == PYOSSIM_UINT16 or stype == PYOSSIM_SINT16 or PYOSSIM_USHORT11:
             buf1 = t1.getUcharBuf(band)
             buf2 = t2.getUcharBuf(band)
 
-        elif stype == OSSIM_UINT32 or stype == OSSIM_SINT32:
+        elif stype == PYOSSIM_UINT32 or stype == PYOSSIM_SINT32:
             buf1 = t1.getUcharBuf(band)
             buf2 = t2.getUcharBuf(band)                
 
-        elif stype == OSSIM_FLOAT32:
+        elif stype == PYOSSIM_FLOAT32:
             buf1 = t1.getUcharBuf(band)
             buf2 = t2.getUcharBuf(band)
 
-        elif stype == OSSIM_FLOAT64:
+        elif stype == PYOSSIM_FLOAT64:
             buf1 = t1.getUcharBuf(band)
             buf2 = t2.getUcharBuf(band)
 

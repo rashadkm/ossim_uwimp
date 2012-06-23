@@ -221,7 +221,7 @@ typedef signed long long       ossim_sint64;
 
 
 /* Importing Base Interfaces */
-
+%include "base/ossimEnums.i"
 %include "base/ossimReferenced.i"
 %include "base/ossimObject.i"
 %include "base/ossimObjectFactory.i"
