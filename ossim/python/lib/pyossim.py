@@ -274,6 +274,119 @@ ossimImageHandlerRegistry_instance = _pyossim.ossimImageHandlerRegistry_instance
 def ossimImageHandlerRegistryGetInstance():
   return _pyossim.ossimImageHandlerRegistryGetInstance()
 ossimImageHandlerRegistryGetInstance = _pyossim.ossimImageHandlerRegistryGetInstance
+
+def ReadImageDataNumPy(*args, **kwargs):
+  return _pyossim.ReadImageDataNumPy(*args, **kwargs)
+ReadImageDataNumPy = _pyossim.ReadImageDataNumPy
+
+def WriteImageDataNumPy(*args, **kwargs):
+  return _pyossim.WriteImageDataNumPy(*args, **kwargs)
+WriteImageDataNumPy = _pyossim.WriteImageDataNumPy
+
+def WriteImageDataToFile_C(*args):
+  return _pyossim.WriteImageDataToFile_C(*args)
+WriteImageDataToFile_C = _pyossim.WriteImageDataToFile_C
+import numpy
+
+dtypesmap = {  
+
+PYOSSIM_UINT8           :   numpy.uint8,
+PYOSSIM_SINT8           :   numpy.uint8,
+PYOSSIM_UINT16          :   numpy.uint16,
+PYOSSIM_SINT16          :   numpy.uint16,
+PYOSSIM_UINT32          :   numpy.uint32,
+PYOSSIM_SINT32          :   numpy.uint32,
+PYOSSIM_FLOAT32         :   numpy.float32,
+PYOSSIM_FLOAT64         :   numpy.float64,
+PYOSSIM_CINT16          :   numpy.complex64,
+PYOSSIM_CINT32          :   numpy.complex64,
+PYOSSIM_CFLOAT32        :   numpy.complex64,
+PYOSSIM_CFLOAT64        :   numpy.complex128
+
+}
+
+
+    
+def find_dtype(dtype_):
+    if isinstance(dtype_, type):
+        if dtype_ == numpy.int8:
+            return PYOSSIM_UINT8
+        if dtype_ == numpy.complex64:
+            return PYOSSIM_CFLOAT32
+        
+        for key, value in dtypesmap.items():
+            if value == dtype_:
+                return key
+        return None
+    else:
+        try:
+            return dtypesmap[dtype_]
+        except KeyError:
+            return None
+
+def NumpyTypeToOssimType(numpy_dtype):
+    if not isinstance(numpy_dtype, type):
+        raise TypeError("Input must be a type")
+    return find_dtype(numpy_dtype)
+
+def OssimTypeToNumpyType(ossim_dtype):
+    return find_dtype(ossim_dtype)
+    
+
+def ReadImageSourceNumPy(tile,ossim_dtype,band_index,numpy_dtype,size,buf_obj=None):
+    buf_obj = numpy.empty([size.y,size.x], dtype = numpy_dtype)
+    if ReadImageDataNumPy(tile.get(),ossim_dtype,band_index,size,buf_obj)!= 0:
+        return None
+
+    return buf_obj
+
+
+def ossimImageSourceAsArray( handler,buf_array=None):
+
+    extent = handler.getBoundingRect()
+    tile = handler.getTile(extent)
+    size = tile.getImageRectangle().size()
+    nbands = tile.getNumberOfBands()
+    ossim_dtype = tile.getScalarType()
+
+
+    numpy_dtype = OssimTypeToNumpyType( ossim_dtype )
+    if numpy_dtype == None:
+        ossim_dtype = PYOSSIM_FLOAT32
+        numpy_dtype = numpy.float32
+    else:
+        ossim_dtype = NumpyTypeToOssimType( numpy_dtype )
+
+
+    array_list = []
+    for band_index in range(0,nbands):
+        if tile.valid():
+            band_array = ReadImageSourceNumPy(tile, ossim_dtype, band_index, numpy_dtype, size)
+            array_list.append( numpy.reshape( band_array, [1,size.y,size.x] ) )
+        else:
+            print "Invalid tile from numpy"
+
+    return numpy.concatenate( array_list )
+
+
+
+def WriteArrayToImageData( tile, array, band=0):
+
+    buf_list = []
+
+    ossim_dtype = tile.getScalarType()
+
+    for a in array.flat:
+        buf_list.append(a)
+
+
+    return WriteImageDataNumPy( tile, ossim_dtype, band, buf_list)
+
+
+def WriteImageDataToFile( imdata, fname, writer="JpegWriter"):
+    return WriteImageDataToFile_C( imdata, fname, ossimString(writer))
+
+
 class ossim2dTo2dTransform(ossimObject):
     __swig_setmethods__ = {}
     for _s in [ossimObject]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -3834,6 +3947,43 @@ class ossimBandMergeSource(ossimImageCombiner):
 ossimBandMergeSource_swigregister = _pyossim.ossimBandMergeSource_swigregister
 ossimBandMergeSource_swigregister(ossimBandMergeSource)
 
+class ossimMemoryImageSource(ossimImageSource):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageSource]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimMemoryImageSource, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageSource]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimMemoryImageSource, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pyossim.new_ossimMemoryImageSource(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def dup(self): return _pyossim.ossimMemoryImageSource_dup(self)
+    def setImage(self, *args): return _pyossim.ossimMemoryImageSource_setImage(self, *args)
+    def setRect(self, *args): return _pyossim.ossimMemoryImageSource_setRect(self, *args)
+    def getNumberOfInputBands(self): return _pyossim.ossimMemoryImageSource_getNumberOfInputBands(self)
+    def getNumberOfOutputBands(self): return _pyossim.ossimMemoryImageSource_getNumberOfOutputBands(self)
+    def getOutputScalarType(self): return _pyossim.ossimMemoryImageSource_getOutputScalarType(self)
+    def getNullPixelValue(self, band = 0): return _pyossim.ossimMemoryImageSource_getNullPixelValue(self, band)
+    def getMinPixelValue(self, band = 0): return _pyossim.ossimMemoryImageSource_getMinPixelValue(self, band)
+    def getMaxPixelValue(self, band = 0): return _pyossim.ossimMemoryImageSource_getMaxPixelValue(self, band)
+    def getBoundingRect(self, resLevel = 0): return _pyossim.ossimMemoryImageSource_getBoundingRect(self, resLevel)
+    def getTile(self, *args): return _pyossim.ossimMemoryImageSource_getTile(self, *args)
+    def const_ossimConnectableObject_canConnectMyInputTo(self, *args): return _pyossim.ossimMemoryImageSource_const_ossimConnectableObject_canConnectMyInputTo(self, *args)
+    def initialize(self): return _pyossim.ossimMemoryImageSource_initialize(self)
+    def getNumberOfDecimationLevels(self): return _pyossim.ossimMemoryImageSource_getNumberOfDecimationLevels(self)
+    def getDecimationFactor(self, *args): return _pyossim.ossimMemoryImageSource_getDecimationFactor(self, *args)
+    def getDecimationFactors(self, *args): return _pyossim.ossimMemoryImageSource_getDecimationFactors(self, *args)
+    def getImageGeometry(self): return _pyossim.ossimMemoryImageSource_getImageGeometry(self)
+    def setImageGeometry(self, *args): return _pyossim.ossimMemoryImageSource_setImageGeometry(self, *args)
+    def saveState(self, *args): return _pyossim.ossimMemoryImageSource_saveState(self, *args)
+    def loadState(self, *args): return _pyossim.ossimMemoryImageSource_loadState(self, *args)
+    __swig_destroy__ = _pyossim.delete_ossimMemoryImageSource
+    __del__ = lambda self : None;
+ossimMemoryImageSource_swigregister = _pyossim.ossimMemoryImageSource_swigregister
+ossimMemoryImageSource_swigregister(ossimMemoryImageSource)
+
 class ossimElevationDatabaseFactoryBase(ossimObjectFactory):
     __swig_setmethods__ = {}
     for _s in [ossimObjectFactory]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -4984,93 +5134,6 @@ class ossimImageHandler(ossimImageSource):
     def getPixelType(self): return _pyossim.ossimImageHandler_getPixelType(self)
 ossimImageHandler_swigregister = _pyossim.ossimImageHandler_swigregister
 ossimImageHandler_swigregister(ossimImageHandler)
-
-
-def ImageDataNumPy(*args, **kwargs):
-  return _pyossim.ImageDataNumPy(*args, **kwargs)
-ImageDataNumPy = _pyossim.ImageDataNumPy
-import numpy
-
-dtypesmap = {  
-
-PYOSSIM_UINT8           :   numpy.uint8,
-PYOSSIM_SINT8           :   numpy.uint8,
-PYOSSIM_UINT16          :   numpy.uint16,
-PYOSSIM_SINT16          :   numpy.uint16,
-PYOSSIM_UINT32          :   numpy.uint32,
-PYOSSIM_SINT32          :   numpy.uint32,
-PYOSSIM_FLOAT32         :   numpy.float32,
-PYOSSIM_FLOAT64         :   numpy.float64,
-PYOSSIM_CINT16          :   numpy.complex64,
-PYOSSIM_CINT32          :   numpy.complex64,
-PYOSSIM_CFLOAT32        :   numpy.complex64,
-PYOSSIM_CFLOAT64        :   numpy.complex128
-
-}
-
-
-    
-def find_dtype(dtype_):
-    if isinstance(dtype_, type):
-        if dtype_ == numpy.int8:
-            return PYOSSIM_UINT8
-        if dtype_ == numpy.complex64:
-            return PYOSSIM_CFLOAT32
-        
-        for key, value in dtypesmap.items():
-            if value == dtype_:
-                return key
-        return None
-    else:
-        try:
-            return dtypesmap[dtype_]
-        except KeyError:
-            return None
-
-def NumpyTypeToOssimType(numpy_dtype):
-    if not isinstance(numpy_dtype, type):
-        raise TypeError("Input must be a type")
-    return find_dtype(numpy_dtype)
-
-def OssimTypeToNumpyType(ossim_dtype):
-    return find_dtype(ossim_dtype)
-    
-
-def ReadImageSourceNumPy(tile,ossim_dtype,band_index,numpy_dtype,size,buf_obj=None):
-    buf_obj = numpy.empty([size.y,size.x], dtype = numpy_dtype)
-    if ImageDataNumPy(tile.get(),ossim_dtype,band_index,size,buf_obj)!= 0:
-        return None
-
-    return buf_obj
-
-
-def ossimImageSourceAsArray( handler,buf_array=None):
-
-    extent = handler.getBoundingRect()
-    tile = handler.getTile(extent)
-    size = tile.getImageRectangle().size()
-    nbands = tile.getNumberOfBands()
-    ossim_dtype = tile.getScalarType()
-
-
-    numpy_dtype = OssimTypeToNumpyType( ossim_dtype )
-    if numpy_dtype == None:
-        ossim_dtype = PYOSSIM_FLOAT32
-        numpy_dtype = numpy.float32
-    else:
-        ossim_dtype = NumpyTypeToOssimType( numpy_dtype )
-
-
-    array_list = []
-    for band_index in range(0,nbands):
-        if tile.valid():
-            band_array = ReadImageSourceNumPy(tile, ossim_dtype, band_index, numpy_dtype, size)
-            array_list.append( numpy.reshape( band_array, [1,size.y,size.x] ) )
-        else:
-            print "Invalid tile from numpy"
-
-    return numpy.concatenate( array_list )
-
 
 class ossimImageMetaData(_object):
     __swig_setmethods__ = {}

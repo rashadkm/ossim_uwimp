@@ -229,7 +229,7 @@ typedef signed long long       ossim_sint64;
 %include "base/ossimProcessInterface.i"
 %include "imaging/ossimImageHandlerRegistry.i"
 
-
+%include "imaging/ossimNumPy.i"
 %include "base/ossimRefPtr.i"
 %include "base/ossim2dTo2dTransform.i"
 %include "base/ossim2dBilinearTransform.i"
@@ -399,7 +399,7 @@ typedef signed long long       ossim_sint64;
 %include "imaging/ossimImageSource.i"
 %include "imaging/ossimImageCombiner.i"
 %include "imaging/ossimBandMergeSource.i"
-
+%include "imaging/ossimMemoryImageSource.i"
 %include "elevation/ossimElevSource.i"
 
 %include "elevation/ossimElevationDatabaseFactoryBase.i"
