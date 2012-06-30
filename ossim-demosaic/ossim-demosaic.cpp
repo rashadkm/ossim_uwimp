@@ -24,6 +24,11 @@
 #include <ossim/imaging/ossimImageHandlerRegistry.h>
 #include <ossim/imaging/ossimImageSourceSequencer.h>
 #include <ossim/imaging/ossimTiffTileSource.h>
+#include <ossim/imaging/ossimMemoryImageSource.h>
+#include <ossim/imaging/ossimTiffWriter.h>
+#include <ossim/imaging/ossimU16ImageData.h>
+#include <ossim/imaging/ossimImageData.h>
+#include <ossim/imaging/ossimJpegWriter.h>
 
 using namespace std;
 
@@ -31,130 +36,117 @@ using namespace std;
 
 template <typename T> bool demosaic(const ossimImageData* t)
 {
-   ossimIpt size = t->getImageRectangle().size();
-
-   int nbands = t->getNumberOfBands();
+    ossimIpt size = t->getImageRectangle().size();
 
 
-    ossim_uint32 num_pixels = (ossim_uint32) (size.x * size.y);
-    
-    int x = size.x;
-    int y = size.y;
+    int num_bands= 3;
+    ossimRefPtr<ossimMemoryImageSource> memSource = new ossimMemoryImageSource();
+    ossimRefPtr<ossimImageData> imdata = new ossimImageData(0,OSSIM_FLOAT32,num_bands);
+    int x_out = size.x/2;
+    int y_out = size.x/2;
+    int size_out = x_out * y_out;
+    imdata->setWidth(x_out);
+    imdata->setHeight(y_out);   
+    imdata->initialize();
 
 
+    ossim_float32* band1 = (ossim_float32*) imdata->getBuf(0);
+    ossim_float32* band2 = (ossim_float32*) imdata->getBuf(1);
+    ossim_float32* band3 = (ossim_float32*) imdata->getBuf(2);
 
-    
+
     int rcount=0,bcount=0,gcount=0,g1count=0,g2count=0;
-    float *red, *blue, *g1, *g2, *green;
+    ossim_float32 *red, *blue, *g1, *g2, *green;
 
 
-    red = new float[x*y];
-    green = new float[x*y];
-    blue = new float[x*y];
-    g1 = new float[x*y];
-    g2 = new float[x*y];
+    red   = new ossim_float32[size_out];
+    green = new ossim_float32[size_out];
+    blue  = new ossim_float32[size_out];
+    g1    = new ossim_float32[size_out];
+    g2    = new ossim_float32[size_out];
     int index = 0;
     
-    for(int i=0;i< y;i++)
+    T *buf = (T *)t->getBuf(0);
+
+    for(int i=0;i< size.y;i++)
     {
-        for(int j = 0; j<x;j++)
+        for(int j = 0; j<size.x;j++)
         {
-
-
-    int band = 0;
-    T* buf = (T*) t->getBuf(band);
-          if(i%2 == 0)
-          {
-            if(j%2) 
+            if(i%2 == 0)
             {
-               red[rcount++] = (float)buf[index];
-               //cout << buf[index] << " ";
-               
+                if(j%2) 
+                {
+                    red[rcount++] = (ossim_float32)buf[index];
+                }
+                else
+                {
+                    g1[g1count++] =(ossim_float32)buf[index];
+                }
             }
-          }  
+            else
+            {
+                if(j%2) 
+                {
+                    g2[g2count++] = (ossim_float32)buf[index];
+                }
+                else
+                {
+                    blue[bcount++] = (ossim_float32)buf[index];
+                }        
           
-          if(i%2)
-          {
-            if(j%2 == 0) 
-            {
-               blue[bcount++] = (float)buf[index];
-               //cout << buf[index] << " ";
             }
-          }          
-          if(i%2)
-          {
-            if(j%2)
-            {
-               g2[g2count++] = (float)buf[index];
-               //cout << buf[index] << " ";
-            }
-          }
-          else
-          {
-            if(j%2 == 0)
-            {
-               g1[g1count++] = (float)buf[index];
-              // cout << buf[index] << " ";  
-            }
-          }
-          
-          
-            index++;
+            index++;  
         }
-        
     }
     
 
-        int gc = g1count + g2count;
-        
 
-        for(int gx = 0; gx < gc; gx++)
-        {
-            float g = (g1[gx] + g2[gx])*0.5;
-            {
-            green[gcount++] = g;
-            }
-        }
-        ossimRefPtr<ossimImageData> redband = new ossimImageData();
-        redband->copyNormalizedBufferToTile(1,red);
-
-/*
- ossimTiffWriter *fileWriter = new ossimTiffWriter()
-
-   fileWriter->connectMyInputTo(0, bm.get());
-   
-
-   
-   fileWriter->open(output_file);
-   
-    if(fileWriter.valid())
+    for(int rx = 0; rx < size_out; rx++)
     {
-        try
-        {
-            fileWriter->execute();
-        }
+        band1[rx] = red[rx];
+    }
+
+    for(int gx = 0; gx < size_out; gx++)
+    {
+        ossim_float32 g = (g1[gx] + g2[gx])*0.5;
+        band3[gx] = g;
+    }
+
+    for(int bx = 0; bx < size_out; bx++)
+    {
+        band2[bx] = blue[bx];
     }
 
 
 
 
-ossimRefPtr<ossimMemoryImageSource> memSource = new ossimMemoryImageSource.h
-memSource->setImage( ...... );  // pass a pointer to an ossimImageData
+    memSource->setImage(imdata);
 
-ossimRefPtr<ossimTiffTileSource> tiff = new ossimTiffTileSource();
-tiff->setFilename( ...... ); // set your output name for file
-tiff->setOutputImageType("tiff_tiled_band_separate");
-tiff->connectMyInputTo(memSource.get());
+    ossimRefPtr<ossimTiffWriter> tiff = new ossimTiffWriter();
 
-tiff->execute();
+    tiff->setFilename("/code/data/out.tif");
+    tiff->setOutputImageType("tiff_tiled_band_separate");
+    tiff->connectMyInputTo(memSource.get());
+    tiff->execute();
+    tiff = 0;
 
-tiff = 0;
-*/
+/*
+    ossimRefPtr<ossimJpegWriter> jpeg = new ossimJpegWriter();
+    jpeg->setFilename("out.jpg");
+    jpeg->setOutputImageType("jpg");
+    jpeg->connectMyInputTo(memSource.get());
+    jpeg->execute();
+    jpeg = 0;
+*/   
 
-delete green;
+
+
+
 delete red;
+delete green;
 delete blue;
-
+delete g1;
+delete g2;
 
 
 
@@ -200,7 +192,6 @@ int main(int argc, char *argv[])
          demosaic<ossim_uint16>(tile.get());
 
 
-   cout << endl;
       return 0;
    }
    catch (const ossimException& e)
