@@ -3002,9 +3002,87 @@ class ossimIrect(_object):
 ossimIrect_swigregister = _pyossim.ossimIrect_swigregister
 ossimIrect_swigregister(ossimIrect)
 
+class ossimDrect(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimDrect, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimDrect, name)
+    __repr__ = _swig_repr
+    UPPER_LEFT = _pyossim.ossimDrect_UPPER_LEFT
+    LOWER_LEFT = _pyossim.ossimDrect_LOWER_LEFT
+    LOWER_RIGHT = _pyossim.ossimDrect_LOWER_RIGHT
+    UPPER_RIGHT = _pyossim.ossimDrect_UPPER_RIGHT
+    __swig_destroy__ = _pyossim.delete_ossimDrect
+    __del__ = lambda self : None;
+    def __init__(self, *args): 
+        this = _pyossim.new_ossimDrect(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def __set__(self, *args): return _pyossim.ossimDrect___set__(self, *args)
+    def __ne__(self, *args): return _pyossim.ossimDrect___ne__(self, *args)
+    def __eq__(self, *args): return _pyossim.ossimDrect___eq__(self, *args)
+    def __imul__(self, *args): return _pyossim.ossimDrect___imul__(self, *args)
+    def __mul__(self, *args): return _pyossim.ossimDrect___mul__(self, *args)
+    def __iadd__(self, *args): return _pyossim.ossimDrect___iadd__(self, *args)
+    def __isub__(self, *args): return _pyossim.ossimDrect___isub__(self, *args)
+    def __add__(self, *args): return _pyossim.ossimDrect___add__(self, *args)
+    def __sub__(self, *args): return _pyossim.ossimDrect___sub__(self, *args)
+    def ul(self): return _pyossim.ossimDrect_ul(self)
+    def ur(self): return _pyossim.ossimDrect_ur(self)
+    def lr(self): return _pyossim.ossimDrect_lr(self)
+    def ll(self): return _pyossim.ossimDrect_ll(self)
+    def changeOrientationMode(self, *args): return _pyossim.ossimDrect_changeOrientationMode(self, *args)
+    def getBounds(self, *args): return _pyossim.ossimDrect_getBounds(self, *args)
+    def makeNan(self): return _pyossim.ossimDrect_makeNan(self)
+    def hasNans(self): return _pyossim.ossimDrect_hasNans(self)
+    def isNan(self): return _pyossim.ossimDrect_isNan(self)
+    def area(self): return _pyossim.ossimDrect_area(self)
+    def orientMode(self): return _pyossim.ossimDrect_orientMode(self)
+    def setOrientMode(self, *args): return _pyossim.ossimDrect_setOrientMode(self, *args)
+    def set_ul(self, *args): return _pyossim.ossimDrect_set_ul(self, *args)
+    def set_ur(self, *args): return _pyossim.ossimDrect_set_ur(self, *args)
+    def set_lr(self, *args): return _pyossim.ossimDrect_set_lr(self, *args)
+    def set_ll(self, *args): return _pyossim.ossimDrect_set_ll(self, *args)
+    def set_ulx(self, *args): return _pyossim.ossimDrect_set_ulx(self, *args)
+    def set_uly(self, *args): return _pyossim.ossimDrect_set_uly(self, *args)
+    def set_urx(self, *args): return _pyossim.ossimDrect_set_urx(self, *args)
+    def set_ury(self, *args): return _pyossim.ossimDrect_set_ury(self, *args)
+    def set_lrx(self, *args): return _pyossim.ossimDrect_set_lrx(self, *args)
+    def set_lry(self, *args): return _pyossim.ossimDrect_set_lry(self, *args)
+    def set_llx(self, *args): return _pyossim.ossimDrect_set_llx(self, *args)
+    def set_lly(self, *args): return _pyossim.ossimDrect_set_lly(self, *args)
+    def initBoundingRect(self, *args): return _pyossim.ossimDrect_initBoundingRect(self, *args)
+    def pointWithin(self, *args): return _pyossim.ossimDrect_pointWithin(self, *args)
+    def intersects(self, *args): return _pyossim.ossimDrect_intersects(self, *args)
+    def completely_within(self, *args): return _pyossim.ossimDrect_completely_within(self, *args)
+    def orientationMode(self): return _pyossim.ossimDrect_orientationMode(self)
+    def height(self): return _pyossim.ossimDrect_height(self)
+    def width(self): return _pyossim.ossimDrect_width(self)
+    def size(self): return _pyossim.ossimDrect_size(self)
+    def stretchOut(self): return _pyossim.ossimDrect_stretchOut(self)
+    def stretchToTileBoundary(self, *args): return _pyossim.ossimDrect_stretchToTileBoundary(self, *args)
+    def expand(self, *args): return _pyossim.ossimDrect_expand(self, *args)
+    def toString(self): return _pyossim.ossimDrect_toString(self)
+    def toRect(self, *args): return _pyossim.ossimDrect_toRect(self, *args)
+    def splitToQuad(self, *args): return _pyossim.ossimDrect_splitToQuad(self, *args)
+    def findClosestEdgePointTo(self, *args): return _pyossim.ossimDrect_findClosestEdgePointTo(self, *args)
+    def clipToRect(self, *args): return _pyossim.ossimDrect_clipToRect(self, *args)
+    def midPoint(self): return _pyossim.ossimDrect_midPoint(self)
+    def ossimIrect_print(self, *args): return _pyossim.ossimDrect_ossimIrect_print(self, *args)
+    def combine(self, *args): return _pyossim.ossimDrect_combine(self, *args)
+    def clip(self, *args): return _pyossim.ossimDrect_clip(self, *args)
+    __swig_getmethods__["getCode"] = lambda x: _pyossim.ossimDrect_getCode
+    if _newclass:getCode = staticmethod(_pyossim.ossimDrect_getCode)
+ossimDrect_swigregister = _pyossim.ossimDrect_swigregister
+ossimDrect_swigregister(ossimDrect)
+
 def __mul__(*args):
   return _pyossim.__mul__(*args)
 __mul__ = _pyossim.__mul__
+
+def ossimDrect_getCode(*args):
+  return _pyossim.ossimDrect_getCode(*args)
+ossimDrect_getCode = _pyossim.ossimDrect_getCode
 
 class ossimLine(_object):
     __swig_setmethods__ = {}
@@ -4606,6 +4684,193 @@ class ossimIgenGenerator(_object):
 ossimIgenGenerator_swigregister = _pyossim.ossimIgenGenerator_swigregister
 ossimIgenGenerator_swigregister(ossimIgenGenerator)
 
+class ossimImageChain(ossimImageSource,ossimConnectableObjectListener,ossimConnectableContainerInterface):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageSource,ossimConnectableObjectListener,ossimConnectableContainerInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageChain, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageSource,ossimConnectableObjectListener,ossimConnectableContainerInterface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimImageChain, name)
+    __repr__ = _swig_repr
+    def __init__(self): 
+        this = _pyossim.new_ossimImageChain()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pyossim.delete_ossimImageChain
+    __del__ = lambda self : None;
+    def getChainList(self, *args): return _pyossim.ossimImageChain_getChainList(self, *args)
+    def __getitem__(self, *args): return _pyossim.ossimImageChain___getitem__(self, *args)
+    def getConnectableObject(self, *args): return _pyossim.ossimImageChain_getConnectableObject(self, *args)
+    def indexOf(self, *args): return _pyossim.ossimImageChain_indexOf(self, *args)
+    def getFirstSource(self, *args): return _pyossim.ossimImageChain_getFirstSource(self, *args)
+    def getFirstObject(self): return _pyossim.ossimImageChain_getFirstObject(self)
+    def getLastSource(self, *args): return _pyossim.ossimImageChain_getLastSource(self, *args)
+    def getLastObject(self): return _pyossim.ossimImageChain_getLastObject(self)
+    def addFirst(self, *args): return _pyossim.ossimImageChain_addFirst(self, *args)
+    def addLast(self, *args): return _pyossim.ossimImageChain_addLast(self, *args)
+    def deleteFirst(self): return _pyossim.ossimImageChain_deleteFirst(self)
+    def deleteLast(self): return _pyossim.ossimImageChain_deleteLast(self)
+    def insertRight(self, *args): return _pyossim.ossimImageChain_insertRight(self, *args)
+    def insertLeft(self, *args): return _pyossim.ossimImageChain_insertLeft(self, *args)
+    def replace(self, *args): return _pyossim.ossimImageChain_replace(self, *args)
+    def add(self, *args): return _pyossim.ossimImageChain_add(self, *args)
+    def getTile(self, *args): return _pyossim.ossimImageChain_getTile(self, *args)
+    def getNumberOfInputBands(self): return _pyossim.ossimImageChain_getNumberOfInputBands(self)
+    def getOutputScalarType(self): return _pyossim.ossimImageChain_getOutputScalarType(self)
+    def getNullPixelValue(self, band = 0): return _pyossim.ossimImageChain_getNullPixelValue(self, band)
+    def getMinPixelValue(self, band = 0): return _pyossim.ossimImageChain_getMinPixelValue(self, band)
+    def getMaxPixelValue(self, band = 0): return _pyossim.ossimImageChain_getMaxPixelValue(self, band)
+    def getOutputBandList(self, *args): return _pyossim.ossimImageChain_getOutputBandList(self, *args)
+    def getTileWidth(self): return _pyossim.ossimImageChain_getTileWidth(self)
+    def getTileHeight(self): return _pyossim.ossimImageChain_getTileHeight(self)
+    def getBoundingRect(self, resLevel = 0): return _pyossim.ossimImageChain_getBoundingRect(self, resLevel)
+    def getValidImageVertices(self, *args): return _pyossim.ossimImageChain_getValidImageVertices(self, *args)
+    def getImageGeometry(self): return _pyossim.ossimImageChain_getImageGeometry(self)
+    def getDecimationFactor(self, *args): return _pyossim.ossimImageChain_getDecimationFactor(self, *args)
+    def getDecimationFactors(self, *args): return _pyossim.ossimImageChain_getDecimationFactors(self, *args)
+    def getNumberOfDecimationLevels(self): return _pyossim.ossimImageChain_getNumberOfDecimationLevels(self)
+    def saveState(self, *args): return _pyossim.ossimImageChain_saveState(self, *args)
+    def loadState(self, *args): return _pyossim.ossimImageChain_loadState(self, *args)
+    def initialize(self): return _pyossim.ossimImageChain_initialize(self)
+    def enableSource(self): return _pyossim.ossimImageChain_enableSource(self)
+    def disableSource(self): return _pyossim.ossimImageChain_disableSource(self)
+    def const_ossimConnectableObject_canConnectMyInputTo(self, *args): return _pyossim.ossimImageChain_const_ossimConnectableObject_canConnectMyInputTo(self, *args)
+    def makeUniqueIds(self): return _pyossim.ossimImageChain_makeUniqueIds(self)
+    def getNumberOfObjects(self, recurse = True): return _pyossim.ossimImageChain_getNumberOfObjects(self, recurse)
+    def getNumberOfSources(self): return _pyossim.ossimImageChain_getNumberOfSources(self)
+    def addChild(self, *args): return _pyossim.ossimImageChain_addChild(self, *args)
+    def removeChild(self, *args): return _pyossim.ossimImageChain_removeChild(self, *args)
+    def getChildren(self, *args): return _pyossim.ossimImageChain_getChildren(self, *args)
+    def disconnectInputEvent(self, *args): return _pyossim.ossimImageChain_disconnectInputEvent(self, *args)
+    def disconnectOutputEvent(self, *args): return _pyossim.ossimImageChain_disconnectOutputEvent(self, *args)
+    def connectInputEvent(self, *args): return _pyossim.ossimImageChain_connectInputEvent(self, *args)
+    def connectOutputEvent(self, *args): return _pyossim.ossimImageChain_connectOutputEvent(self, *args)
+    def objectDestructingEvent(self, *args): return _pyossim.ossimImageChain_objectDestructingEvent(self, *args)
+    def propagateEventToOutputs(self, *args): return _pyossim.ossimImageChain_propagateEventToOutputs(self, *args)
+    def propagateEventToInputs(self, *args): return _pyossim.ossimImageChain_propagateEventToInputs(self, *args)
+    def processEvent(self, *args): return _pyossim.ossimImageChain_processEvent(self, *args)
+    def accept(self, *args): return _pyossim.ossimImageChain_accept(self, *args)
+    def deleteList(self): return _pyossim.ossimImageChain_deleteList(self)
+    def imageChainList(self, *args): return _pyossim.ossimImageChain_imageChainList(self, *args)
+    def fillContainer(self, *args): return _pyossim.ossimImageChain_fillContainer(self, *args)
+ossimImageChain_swigregister = _pyossim.ossimImageChain_swigregister
+ossimImageChain_swigregister(ossimImageChain)
+
+ossimSingleImageChain_HEADER = _pyossim.ossimSingleImageChain_HEADER
+class ossimSingleImageChain(ossimImageChain):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageChain]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimSingleImageChain, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageChain]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimSingleImageChain, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pyossim.new_ossimSingleImageChain(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pyossim.delete_ossimSingleImageChain
+    __del__ = lambda self : None;
+    def reset(self): return _pyossim.ossimSingleImageChain_reset(self)
+    def open(self, *args): return _pyossim.ossimSingleImageChain_open(self, *args)
+    def isOpen(self): return _pyossim.ossimSingleImageChain_isOpen(self)
+    def close(self): return _pyossim.ossimSingleImageChain_close(self)
+    def getFilename(self): return _pyossim.ossimSingleImageChain_getFilename(self)
+    def createRenderedChain(self, *args): return _pyossim.ossimSingleImageChain_createRenderedChain(self, *args)
+    def addImageHandler(self, *args): return _pyossim.ossimSingleImageChain_addImageHandler(self, *args)
+    def addBandSelector(self, *args): return _pyossim.ossimSingleImageChain_addBandSelector(self, *args)
+    def addHistogramRemapper(self, *args): return _pyossim.ossimSingleImageChain_addHistogramRemapper(self, *args)
+    def addCache(self): return _pyossim.ossimSingleImageChain_addCache(self)
+    def addResampler(self): return _pyossim.ossimSingleImageChain_addResampler(self)
+    def addScalarRemapper(self): return _pyossim.ossimSingleImageChain_addScalarRemapper(self)
+    def getImageHandler(self, *args): return _pyossim.ossimSingleImageChain_getImageHandler(self, *args)
+    def getBandSelector(self, *args): return _pyossim.ossimSingleImageChain_getBandSelector(self, *args)
+    def getHistogramRemapper(self, *args): return _pyossim.ossimSingleImageChain_getHistogramRemapper(self, *args)
+    def getResamplerCache(self, *args): return _pyossim.ossimSingleImageChain_getResamplerCache(self, *args)
+    def getImageRenderer(self, *args): return _pyossim.ossimSingleImageChain_getImageRenderer(self, *args)
+    def getScalarRemapper(self, *args): return _pyossim.ossimSingleImageChain_getScalarRemapper(self, *args)
+    def getChainCache(self, *args): return _pyossim.ossimSingleImageChain_getChainCache(self, *args)
+    def setAddHistogramFlag(self, *args): return _pyossim.ossimSingleImageChain_setAddHistogramFlag(self, *args)
+    def getAddHistogramFlag(self): return _pyossim.ossimSingleImageChain_getAddHistogramFlag(self)
+    def setAddResamplerCacheFlag(self, *args): return _pyossim.ossimSingleImageChain_setAddResamplerCacheFlag(self, *args)
+    def getAddResamplerCacheFlag(self): return _pyossim.ossimSingleImageChain_getAddResamplerCacheFlag(self)
+    def setAddChainCacheFlag(self, *args): return _pyossim.ossimSingleImageChain_setAddChainCacheFlag(self, *args)
+    def getAddChainCacheFlag(self): return _pyossim.ossimSingleImageChain_getAddChainCacheFlag(self)
+    def setRemapToEightBitFlag(self, *args): return _pyossim.ossimSingleImageChain_setRemapToEightBitFlag(self, *args)
+    def getRemapToEightBitFlag(self): return _pyossim.ossimSingleImageChain_getRemapToEightBitFlag(self)
+    def setThreeBandFlag(self, *args): return _pyossim.ossimSingleImageChain_setThreeBandFlag(self, *args)
+    def getThreeBandFlag(self): return _pyossim.ossimSingleImageChain_getThreeBandFlag(self)
+    def setThreeBandReverseFlag(self, *args): return _pyossim.ossimSingleImageChain_setThreeBandReverseFlag(self, *args)
+    def getThreeBandReverseFlag(self): return _pyossim.ossimSingleImageChain_getThreeBandReverseFlag(self)
+    def setToThreeBands(self): return _pyossim.ossimSingleImageChain_setToThreeBands(self)
+    def setToThreeBandsReverse(self): return _pyossim.ossimSingleImageChain_setToThreeBandsReverse(self)
+    def setBandSelection(self, *args): return _pyossim.ossimSingleImageChain_setBandSelection(self, *args)
+    def getImageHandlerScalarType(self): return _pyossim.ossimSingleImageChain_getImageHandlerScalarType(self)
+    def openHistogram(self, *args): return _pyossim.ossimSingleImageChain_openHistogram(self, *args)
+ossimSingleImageChain_swigregister = _pyossim.ossimSingleImageChain_swigregister
+ossimSingleImageChain_swigregister(ossimSingleImageChain)
+
+class ossimViewInterface(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimViewInterface, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimViewInterface, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _pyossim.delete_ossimViewInterface
+    __del__ = lambda self : None;
+    def setView(self, *args): return _pyossim.ossimViewInterface_setView(self, *args)
+    def getView(self, *args): return _pyossim.ossimViewInterface_getView(self, *args)
+    def refreshView(self): return _pyossim.ossimViewInterface_refreshView(self)
+    def getBaseObject(self): return _pyossim.ossimViewInterface_getBaseObject(self)
+ossimViewInterface_swigregister = _pyossim.ossimViewInterface_swigregister
+ossimViewInterface_swigregister(ossimViewInterface)
+
+class ossimImageRenderer(ossimImageSourceFilter,ossimViewInterface):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageSourceFilter,ossimViewInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageRenderer, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageSourceFilter,ossimViewInterface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimImageRenderer, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pyossim.new_ossimImageRenderer(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def getLongName(self): return _pyossim.ossimImageRenderer_getLongName(self)
+    def getShortName(self): return _pyossim.ossimImageRenderer_getShortName(self)
+    def getTile(self, *args): return _pyossim.ossimImageRenderer_getTile(self, *args)
+    def initialize(self): return _pyossim.ossimImageRenderer_initialize(self)
+    def getBoundingRect(self, *args): return _pyossim.ossimImageRenderer_getBoundingRect(self, *args)
+    def saveState(self, *args): return _pyossim.ossimImageRenderer_saveState(self, *args)
+    def loadState(self, *args): return _pyossim.ossimImageRenderer_loadState(self, *args)
+    def setImageViewTransform(self, *args): return _pyossim.ossimImageRenderer_setImageViewTransform(self, *args)
+    def getImageViewTransform(self): return _pyossim.ossimImageRenderer_getImageViewTransform(self)
+    def getImageGeometry(self): return _pyossim.ossimImageRenderer_getImageGeometry(self)
+    def setView(self, *args): return _pyossim.ossimImageRenderer_setView(self, *args)
+    def getResampler(self): return _pyossim.ossimImageRenderer_getResampler(self)
+    def getView(self, *args): return _pyossim.ossimImageRenderer_getView(self, *args)
+    def getDecimationFactor(self, *args): return _pyossim.ossimImageRenderer_getDecimationFactor(self, *args)
+    def getDecimationFactors(self, *args): return _pyossim.ossimImageRenderer_getDecimationFactors(self, *args)
+    def getNumberOfDecimationLevels(self): return _pyossim.ossimImageRenderer_getNumberOfDecimationLevels(self)
+    def setAutoUpdateInputTransformFlag(self, *args): return _pyossim.ossimImageRenderer_setAutoUpdateInputTransformFlag(self, *args)
+    def getValidImageVertices(self, *args): return _pyossim.ossimImageRenderer_getValidImageVertices(self, *args)
+    def setMaxLevelsToCompute(self, *args): return _pyossim.ossimImageRenderer_setMaxLevelsToCompute(self, *args)
+    def getMaxLevelsToCompute(self): return _pyossim.ossimImageRenderer_getMaxLevelsToCompute(self)
+    def connectInputEvent(self, *args): return _pyossim.ossimImageRenderer_connectInputEvent(self, *args)
+    def disconnectInputEvent(self, *args): return _pyossim.ossimImageRenderer_disconnectInputEvent(self, *args)
+    def propertyEvent(self, *args): return _pyossim.ossimImageRenderer_propertyEvent(self, *args)
+    def refreshEvent(self, *args): return _pyossim.ossimImageRenderer_refreshEvent(self, *args)
+    def setProperty(self, *args): return _pyossim.ossimImageRenderer_setProperty(self, *args)
+    def getProperty(self, *args): return _pyossim.ossimImageRenderer_getProperty(self, *args)
+    def getPropertyNames(self, *args): return _pyossim.ossimImageRenderer_getPropertyNames(self, *args)
+    def enableSource(self): return _pyossim.ossimImageRenderer_enableSource(self)
+    def disableSource(self): return _pyossim.ossimImageRenderer_disableSource(self)
+    def setEnableFlag(self, *args): return _pyossim.ossimImageRenderer_setEnableFlag(self, *args)
+ossimImageRenderer_swigregister = _pyossim.ossimImageRenderer_swigregister
+ossimImageRenderer_swigregister(ossimImageRenderer)
+
 class ossimImageDataHelper(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageDataHelper, name, value)
@@ -5504,6 +5769,54 @@ class ossimTiffTileSource(ossimImageHandler):
 ossimTiffTileSource_swigregister = _pyossim.ossimTiffTileSource_swigregister
 ossimTiffTileSource_swigregister(ossimTiffTileSource)
 
+class ossimTiffWriter(ossimImageFileWriter):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageFileWriter]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimTiffWriter, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageFileWriter]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimTiffWriter, name)
+    __repr__ = _swig_repr
+    def __init__(self): 
+        this = _pyossim.new_ossimTiffWriter()
+        try: self.this.append(this)
+        except: self.this = this
+    UNDEFINED = _pyossim.ossimTiffWriter_UNDEFINED
+    LINEAR_METER = _pyossim.ossimTiffWriter_LINEAR_METER
+    LINEAR_FOOT = _pyossim.ossimTiffWriter_LINEAR_FOOT
+    LINEAR_FOOT_US_SURVEY = _pyossim.ossimTiffWriter_LINEAR_FOOT_US_SURVEY
+    ANGULAR_DEGREES = _pyossim.ossimTiffWriter_ANGULAR_DEGREES
+    USER_DEFINED = _pyossim.ossimTiffWriter_USER_DEFINED
+    def getImageTypeList(self, *args): return _pyossim.ossimTiffWriter_getImageTypeList(self, *args)
+    def isOpen(self): return _pyossim.ossimTiffWriter_isOpen(self)
+    def open(self): return _pyossim.ossimTiffWriter_open(self)
+    def close(self): return _pyossim.ossimTiffWriter_close(self)
+    def setJpegQuality(self, *args): return _pyossim.ossimTiffWriter_setJpegQuality(self, *args)
+    def getJpegQuality(self): return _pyossim.ossimTiffWriter_getJpegQuality(self)
+    def setCompressionType(self, *args): return _pyossim.ossimTiffWriter_setCompressionType(self, *args)
+    def getCompressionType(self): return _pyossim.ossimTiffWriter_getCompressionType(self)
+    def getGeotiffFlag(self): return _pyossim.ossimTiffWriter_getGeotiffFlag(self)
+    def setGeotiffFlag(self, *args): return _pyossim.ossimTiffWriter_setGeotiffFlag(self, *args)
+    def setTileSize(self, *args): return _pyossim.ossimTiffWriter_setTileSize(self, *args)
+    def getOutputTileSize(self): return _pyossim.ossimTiffWriter_getOutputTileSize(self)
+    def setProjectionInfo(self, *args): return _pyossim.ossimTiffWriter_setProjectionInfo(self, *args)
+    def setLut(self, *args): return _pyossim.ossimTiffWriter_setLut(self, *args)
+    def saveState(self, *args): return _pyossim.ossimTiffWriter_saveState(self, *args)
+    def loadState(self, *args): return _pyossim.ossimTiffWriter_loadState(self, *args)
+    def setProperty(self, *args): return _pyossim.ossimTiffWriter_setProperty(self, *args)
+    def getProperty(self, *args): return _pyossim.ossimTiffWriter_getProperty(self, *args)
+    def getPropertyNames(self, *args): return _pyossim.ossimTiffWriter_getPropertyNames(self, *args)
+    def getExtension(self): return _pyossim.ossimTiffWriter_getExtension(self)
+    def hasImageType(self, *args): return _pyossim.ossimTiffWriter_hasImageType(self, *args)
+    __swig_getmethods__["dumpTileToFile"] = lambda x: _pyossim.ossimTiffWriter_dumpTileToFile
+    if _newclass:dumpTileToFile = staticmethod(_pyossim.ossimTiffWriter_dumpTileToFile)
+ossimTiffWriter_swigregister = _pyossim.ossimTiffWriter_swigregister
+ossimTiffWriter_swigregister(ossimTiffWriter)
+
+def ossimTiffWriter_dumpTileToFile(*args):
+  return _pyossim.ossimTiffWriter_dumpTileToFile(*args)
+ossimTiffWriter_dumpTileToFile = _pyossim.ossimTiffWriter_dumpTileToFile
+
 class ossimNormalizedRemapTable(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ossimNormalizedRemapTable, name, value)
@@ -5864,6 +6177,73 @@ ossimEpsgProjectionDatabase_swigregister(ossimEpsgProjectionDatabase)
 def ossimEpsgProjectionDatabase_instance():
   return _pyossim.ossimEpsgProjectionDatabase_instance()
 ossimEpsgProjectionDatabase_instance = _pyossim.ossimEpsgProjectionDatabase_instance
+
+class ossimImageViewTransform(ossim2dTo2dTransform,ossimViewInterface):
+    __swig_setmethods__ = {}
+    for _s in [ossim2dTo2dTransform,ossimViewInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageViewTransform, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossim2dTo2dTransform,ossimViewInterface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimImageViewTransform, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    def forward(self, *args): return _pyossim.ossimImageViewTransform_forward(self, *args)
+    def inverse(self, *args): return _pyossim.ossimImageViewTransform_inverse(self, *args)
+    def isIdentity(self): return _pyossim.ossimImageViewTransform_isIdentity(self)
+    def isValid(self): return _pyossim.ossimImageViewTransform_isValid(self)
+    def getInputMetersPerPixel(self): return _pyossim.ossimImageViewTransform_getInputMetersPerPixel(self)
+    def getOutputMetersPerPixel(self): return _pyossim.ossimImageViewTransform_getOutputMetersPerPixel(self)
+    def getImageToViewScale(self, *args): return _pyossim.ossimImageViewTransform_getImageToViewScale(self, *args)
+    def getViewToImageScale(self, *args): return _pyossim.ossimImageViewTransform_getViewToImageScale(self, *args)
+    def ossimImageViewTransform_print(self, *args): return _pyossim.ossimImageViewTransform_ossimImageViewTransform_print(self, *args)
+    def imageToView(self, *args): return _pyossim.ossimImageViewTransform_imageToView(self, *args)
+    def viewToImage(self, *args): return _pyossim.ossimImageViewTransform_viewToImage(self, *args)
+    def getScaleChangeImageToView(self, *args): return _pyossim.ossimImageViewTransform_getScaleChangeImageToView(self, *args)
+    def getScaleChangeViewToImage(self, *args): return _pyossim.ossimImageViewTransform_getScaleChangeViewToImage(self, *args)
+    def getRoundTripErrorView(self, *args): return _pyossim.ossimImageViewTransform_getRoundTripErrorView(self, *args)
+    def getRoundTripErrorImage(self, *args): return _pyossim.ossimImageViewTransform_getRoundTripErrorImage(self, *args)
+    def getImageToViewBounds(self, *args): return _pyossim.ossimImageViewTransform_getImageToViewBounds(self, *args)
+    def loadState(self, *args): return _pyossim.ossimImageViewTransform_loadState(self, *args)
+    def saveState(self, *args): return _pyossim.ossimImageViewTransform_saveState(self, *args)
+    __swig_destroy__ = _pyossim.delete_ossimImageViewTransform
+    __del__ = lambda self : None;
+ossimImageViewTransform_swigregister = _pyossim.ossimImageViewTransform_swigregister
+ossimImageViewTransform_swigregister(ossimImageViewTransform)
+
+ossimImageViewProjectionTransform_HEADER = _pyossim.ossimImageViewProjectionTransform_HEADER
+class ossimImageViewProjectionTransform(ossimImageViewTransform):
+    __swig_setmethods__ = {}
+    for _s in [ossimImageViewTransform]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageViewProjectionTransform, name, value)
+    __swig_getmethods__ = {}
+    for _s in [ossimImageViewTransform]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, ossimImageViewProjectionTransform, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pyossim.new_ossimImageViewProjectionTransform(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def dup(self): return _pyossim.ossimImageViewProjectionTransform_dup(self)
+    __swig_destroy__ = _pyossim.delete_ossimImageViewProjectionTransform
+    __del__ = lambda self : None;
+    def isValid(self): return _pyossim.ossimImageViewProjectionTransform_isValid(self)
+    def isIdentity(self): return _pyossim.ossimImageViewProjectionTransform_isIdentity(self)
+    def setViewGeometry(self, *args): return _pyossim.ossimImageViewProjectionTransform_setViewGeometry(self, *args)
+    def setImageGeometry(self, *args): return _pyossim.ossimImageViewProjectionTransform_setImageGeometry(self, *args)
+    def imageToView(self, *args): return _pyossim.ossimImageViewProjectionTransform_imageToView(self, *args)
+    def viewToImage(self, *args): return _pyossim.ossimImageViewProjectionTransform_viewToImage(self, *args)
+    def ossimImageViewProjectionTransform_print(self, *args): return _pyossim.ossimImageViewProjectionTransform_ossimImageViewProjectionTransform_print(self, *args)
+    def getImageGeometry(self, *args): return _pyossim.ossimImageViewProjectionTransform_getImageGeometry(self, *args)
+    def getViewGeometry(self, *args): return _pyossim.ossimImageViewProjectionTransform_getViewGeometry(self, *args)
+    def setView(self, *args): return _pyossim.ossimImageViewProjectionTransform_setView(self, *args)
+    def getView(self, *args): return _pyossim.ossimImageViewProjectionTransform_getView(self, *args)
+    def getInputMetersPerPixel(self): return _pyossim.ossimImageViewProjectionTransform_getInputMetersPerPixel(self)
+    def getOutputMetersPerPixel(self): return _pyossim.ossimImageViewProjectionTransform_getOutputMetersPerPixel(self)
+    def getImageToViewBounds(self, *args): return _pyossim.ossimImageViewProjectionTransform_getImageToViewBounds(self, *args)
+    def loadState(self, *args): return _pyossim.ossimImageViewProjectionTransform_loadState(self, *args)
+    def saveState(self, *args): return _pyossim.ossimImageViewProjectionTransform_saveState(self, *args)
+ossimImageViewProjectionTransform_swigregister = _pyossim.ossimImageViewProjectionTransform_swigregister
+ossimImageViewProjectionTransform_swigregister(ossimImageViewProjectionTransform)
 
 class ossimMapProjectionInfo(ossimObject):
     __swig_setmethods__ = {}

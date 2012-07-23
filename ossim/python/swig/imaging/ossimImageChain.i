@@ -20,6 +20,8 @@
 
 %}
 
+%feature("notabstract") ossimImageChain;
+
 /* Handling Image chain Assignment operator */
 %rename(__getitem__) ossimImageChain::operator[];
 

@@ -332,6 +332,7 @@ typedef signed long long       ossim_sint64;
 
 %include "base/ossimIpt.i"
 %include "base/ossimIrect.i"
+%include "base/ossimDrect.i"
 %include "base/ossimLine.i"
 
 %include "base/ossimLsrPoint.i"
@@ -366,7 +367,7 @@ typedef signed long long       ossim_sint64;
 
 %include "base/ossimViewController.i"
 %include "base/ossimViewEvent.i"
-%include "base/ossimViewInterface.i"
+
 %include "base/ossimViewListener.i"
 
 %include "base/ossimTDpt.i"
@@ -395,7 +396,7 @@ typedef signed long long       ossim_sint64;
 %include "imaging/ossimAdrgHeader.i"
 %include "base/ossimSource.i"
 %include "base/ossimOutputSource.i"
-
+%include "base/ossimViewInterface.i"
 %include "imaging/ossimImageSource.i"
 %include "imaging/ossimImageCombiner.i"
 %include "imaging/ossimBandMergeSource.i"
@@ -473,13 +474,16 @@ typedef signed long long       ossim_sint64;
 %include "imaging/ossimHsiToRgbSource.i"
 %include "imaging/ossimHsvGridRemapEngine.i"
 %include "imaging/ossimHsvToRgbSource.i"
-
+%feature("notabstract") ossimSingleImageChain;
+%feature("notabstract") ossimImageChain;
 %include "imaging/ossimIgenGenerator.i"
 %include "imaging/ossimImageCacheBase.i"
 %include "imaging/ossimImageCacheTileSource.i"
-/*%include "imaging/ossimImageChain.i"*/
-
+%include "imaging/ossimImageChain.i"
+%include "imaging/ossimSingleImageChain.i"
+%include "imaging/ossimImageRenderer.i"
 %include "imaging/ossimImageDataHelper.i"
+
 
 %include "base/ossimDataObject.i"
 %include "base/ossimRectilinearDataObject.i"
@@ -518,7 +522,7 @@ typedef signed long long       ossim_sint64;
 %include "imaging/ossimJpegYCbCrToRgbSource.i"
 
 %include "imaging/ossimTiffTileSource.i"
-
+%include "imaging/ossimTiffWriter.i"
 /*
 %include "imaging/ossimMaskedImageHandler.i"
 %include "imaging/ossimMaskFilter.i"
@@ -567,9 +571,10 @@ typedef signed long long       ossim_sint64;
 %include "projection/ossimIkonosRpcModel.i"
 %include "projection/ossimImageProjectionModel.i"
 %include "projection/ossimImageViewAffineTransform.i"
+%include "projection/ossimImageViewTransform.i"
 %include "projection/ossimImageViewProjectionTransform.i"
 %include "projection/ossimImageViewTransformFactory.i"
-%include "projection/ossimImageViewTransform.i"
+
 %include "projection/ossimLandSatModel.i"
 %include "projection/ossimMapProjectionFactory.i"
 %include "projection/ossimMapProjection.i"

@@ -8,12 +8,17 @@
 %module pyossim
 
 %{
-#include <ossim/projection/ossimImageViewTransform.h>
+#include <iostream>
+#include <ossim/base/ossimViewInterface.h>
+#include <ossim/base/ossimObject.h>
+#include <ossim/base/ossimDpt.h>
+#include <ossim/base/ossimDrect.h>
+#include <ossim/base/ossim2dTo2dTransform.h>
 %}
 
 #ifndef TYPE_DATA
 #define TYPE_DATA
-
+#endif
 /* Handling ossimImageViewTransform <<  operator */
 %rename(__lshift__) operator <<;
 
@@ -25,4 +30,4 @@
 /* Wrapping class ossimImageViewTransform */
 %include "ossim/projection/ossimImageViewTransform.h"
 
-#endif
+
