@@ -1,0 +1,15 @@
+
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+PROJECT (ossim-gsoc)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+
+ADD_EXECUTABLE(ossim-app
+ossim-app.cpp
+)
+
+INCLUDE_DIRECTORIES(/code/imagestack_nhv/src)
+
+TARGET_LINK_LIBRARIES(ossim-app ossim)
+
+
