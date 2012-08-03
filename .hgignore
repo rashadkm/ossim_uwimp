@@ -1,3 +1,9 @@
 syntax: glob
 *.pyc
+*~
+*.o
+CMakeFiles
+CMakeCache.txt
+Makefile
+*.cmake
 
