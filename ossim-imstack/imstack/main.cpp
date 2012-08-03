@@ -62,7 +62,9 @@ using ::std::list;
 static Image myrgb2y(Window im);
 static Image myY(Image l);
 
+void ossimSave(Image im, string outFile);
 
+ossimRefPtr<ossimMemoryImageSource> Imagestack2OssimImageData(Image im);
 
 template <typename T> ossimRefPtr<ossimImageData> prepareTile(ossimImageData* im,unsigned int divisor)
 {
@@ -166,6 +168,8 @@ int main(int argc, char **argv) {
 
     const char *f = "/code/data/in.tif";
 
+std::string outFile = "/code/data/ossim_imstack_colorcorrect.tif";
+    bool writeUsingImStack = true;
 
     ossimImageHandlerRegistry* registry = ossimImageHandlerRegistry::instance();
     ossimRefPtr<ossimImageHandler> handler = registry->open(ossimFilename(f));  //ossim_uint8
@@ -259,7 +263,7 @@ for (int y = 0; y < im.height; y++)
 //Crop *crop = new Crop();
 //Image cropped = crop->apply(im,0,0,1280,width,height,1024);
 
-Save *save = new Save();
+
 
 
 WhiteBalance *wb = new WhiteBalance();
@@ -350,11 +354,14 @@ Image cc_im2 = cc->apply(crop_im,"lab","rgb");
 
 Clamp *clamp = new Clamp();
 clamp->apply(cc_im2, 0, 1);
-
-
-save->apply(cc_im2,"/code/tmp/ossim_imstack_colorcorrect.png","");
-
-
+/*
+Save *save = new Save();
+writeUsingImStack = false;
+if(writeUsingImStack)
+save->apply(cc_im2,outFile,"");
+else
+*/
+ossimSave(cc_im2,outFile);
 
 
 /*
@@ -367,7 +374,62 @@ bin/ImageStack -time --load '/code/data/in.tif'   --crop 0 0 1360 1024  --whiteb
     return 0;
 
 }
+ossimRefPtr<ossimMemoryImageSource> ImagestackToOssimImageSource(Image im)
+{
+    ossimRefPtr<ossimMemoryImageSource> memSource = new ossimMemoryImageSource();
+    ossimRefPtr<ossimImageData> imdata = new ossimImageData(memSource.get(),OSSIM_FLOAT32,3);  
+    imdata->setWidth(im.width);
+    imdata->setHeight(im.height);
+    imdata->initialize();
 
+    ossim_float32* band1 =(ossim_float32*) imdata->getBuf(0);
+    ossim_float32* band2 =(ossim_float32*) imdata->getBuf(1);
+    ossim_float32* band3 =(ossim_float32*) imdata->getBuf(2);
+
+
+    ossim_uint32 p = 0, q = 0, r = 0;
+
+    for (int y = 0; y < im.height; y++) 
+    {
+        for (int x = 0; x < im.width; x++) 
+        {
+        	for (int c = 0; c < im.channels; c++) 
+            {
+                if(c==0)
+                {
+                    band1[p++] = im(x,y)[c];
+                }
+                else if(c==1)
+                {
+                    band2[q++] = im(x,y)[c];
+                }
+
+                else if(c==2)
+                {
+                    band3[r++] = im(x,y)[c];
+                }
+	        }
+        }
+    }
+
+    memSource->setImage(imdata);
+
+    return memSource;
+}
+void ossimSave(Image im, string outFile)
+{
+
+
+ossimRefPtr<ossimMemoryImageSource> memSource = ImagestackToOssimImageSource(im);
+
+   ossimRefPtr<ossimTiffWriter> tiff = new ossimTiffWriter();
+cout << "here\n\n\n";
+    tiff->setFilename(outFile);
+    tiff->setOutputImageType("tiff_tiled_band_separate");
+    tiff->connectMyInputTo(memSource.get());
+    tiff->execute();
+    tiff = 0;
+}
 
 static Image myY(Image l)
 {
