@@ -126,7 +126,7 @@ TCPConnection::TCPConnection(Address address) {
 }
 
 TCPConnection::~TCPConnection() {
-    close(fd);
+   // close(fd);
 }
 
 bool TCPConnection::recv(char *buffer, int len) {
@@ -224,7 +224,7 @@ namespace UDP {
         int sent = sendto(sock, buffer, len, 0, (struct sockaddr *)(&(address.addr)), sizeof(address.addr));
         assert(sent >= 0, "send failed\n");
         assert(sent == len, "send sent a different number of bytes than expected\n"); 
-        close(sock);
+      //  close(sock);
     }
 }
 
@@ -254,7 +254,7 @@ TCPServer::TCPServer(unsigned short port) {
 
 
 TCPServer::~TCPServer() {
-    close(sock);
+  //  close(sock);
 }
 
 TCPConnection *TCPServer::listen(int timeout) {
@@ -299,7 +299,7 @@ UDPServer::UDPServer(unsigned short port) {
 }
 
 UDPServer::~UDPServer() {
-    close(sock);
+   // close(sock);
 }
 
 

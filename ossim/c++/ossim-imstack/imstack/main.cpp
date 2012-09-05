@@ -166,9 +166,9 @@ int main(int argc, char **argv) {
     ossimInit::instance()->addOptions(ap);
     ossimInit::instance()->initialize(ap);
 
-    const char *f = "/code/data/in.tif";
+    const char *f = argv[1];
 
-std::string outFile = "/code/data/ossim_imstack_colorcorrect.tif";
+std::string outFile = argv[2];
     bool writeUsingImStack = true;
 
     ossimImageHandlerRegistry* registry = ossimImageHandlerRegistry::instance();
