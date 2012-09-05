@@ -1,15 +1,14 @@
 
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
-PROJECT (ossim-gsoc)
+PROJECT (ossim-demosaic)
 
 SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
-ADD_EXECUTABLE(ossim-app
-ossim-app.cpp
+ADD_EXECUTABLE(ossim-demosaic
+ossim-demosaic.cpp
 )
+INCLUDE_DIRECTORIES(/usr/local/include)
 
-INCLUDE_DIRECTORIES(/code/imagestack_nhv/src)
-
-TARGET_LINK_LIBRARIES(ossim-app ossim)
+TARGET_LINK_LIBRARIES(ossim-demosaic ossim)
 
 
