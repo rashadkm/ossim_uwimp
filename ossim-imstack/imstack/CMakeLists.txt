@@ -44,6 +44,6 @@ main.cpp)
 INCLUDE_DIRECTORIES(imagestack_nhv/src/)
 
 
-TARGET_LINK_LIBRARIES(${APPNAME} fftw3f ossim)
+TARGET_LINK_LIBRARIES(${APPNAME} fftw3f ossim  )
 
 
