@@ -216,4 +216,5 @@ typedef signed long long       ossim_sint64;
 %rename(__set__) *::operator=;
 %rename(__getitem__) *::operator[];
 
-%include "src/ossimPlanetAction.i"
+%include "src/ossimPlanet.i"
+//%include "src/ossimPlanetAction.i"

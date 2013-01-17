@@ -1,9 +1,13 @@
+/*
+
+*/
+
 %module pyplanet
 
 
 
-%include std_pair.i
-%include osg_header.i
+//%include std_pair.i
+//%include osg_header.i
 
 
 %{

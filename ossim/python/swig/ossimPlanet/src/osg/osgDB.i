@@ -1,3 +1,7 @@
+/*
+
+*/
+
 %module pyplanet
 
 
@@ -6,7 +10,7 @@
 
 %include typemaps.i
 
-%include osg_header.i
+/*%%include osg_header.i*/
 
 
 /* instantiate the required template specializations */
