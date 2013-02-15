@@ -57,12 +57,5 @@ using namespace osg;
 %include "ossimPlanet/ossimPlanetExport.h"
 %include "osg/Object"
 %include "osg/Node"
-%include osg/osgText.i
-%include osg/osgDB.i
-%include osg/AnimationPath
-%include osg/Geode
-%include osg/Group
-%include <osg/Transform>
-%include <osg/Image>
-%include <osg/CoordinateSystemNode>
+
 %ignore ::operator == ;

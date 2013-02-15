@@ -8,6 +8,7 @@
 
 %include "globals.i"
 %{
+
 #include <osg/Referenced>
 #include <ossim/base/ossimString.h>
 #include <ossimPlanet/ossimPlanetAction.h>
@@ -56,6 +57,9 @@
 /*#include <ossimPlanet/ossimPlanetGeocoder.h>*/
 /*#include <ossimPlanet/ossimPlanetGeoRefModel.h>*/
 /*#include <ossimPlanet/ossimPlanetExtents.h>*/
+
+
+
 #include <ossimPlanet/ossimPlanetIconGeom.h>
 #include <ossimPlanet/ossimPlanetId.h>
 #include <ossimPlanet/ossimPlanetIdManager.h>
@@ -64,6 +68,10 @@
 
 /*#include <ossimPlanet/ossimPlanetIdolBridge.h>*/
 /*#include <ossimPlanet/ossimPlanetIdolLayer.h>*/
+
+
+
+
 #include <ossimPlanet/ossimPlanetImage.h>
 #include <ossimPlanet/ossimPlanetInputDevice.h>
 #include <ossimPlanet/ossimPlanetInteractionController.h>
@@ -85,6 +93,10 @@
 #include <ossimPlanet/ossimPlanetKmlNetworkLinkNode.h>
 #include <ossimPlanet/ossimPlanetKmlPlacemarkNode.h>
 /*#include <ossimPlanet/ossimPlanetKmlReaderWriter.h>*/
+
+
+
+
 #include <ossimPlanet/ossimPlanetKmlScreenOverlayNode.h>
 
 
@@ -116,6 +128,8 @@
 #include <ossimPlanet/ossimPlanetNetworkConnection.h>
 /*#include <ossimPlanet/ossimPlanetActionRouter.h>*/
 
+
+
 #include <ossimPlanet/ossimPlanetAnimationPath.h>
 #include <ossimPlanet/ossimPlanetAnnotationLayerNode.h>
 #include <ossimPlanet/ossimPlanetAnimatedPointModel.h>
@@ -127,7 +141,7 @@ using namespace osg;
 
 %}
 
-
+/*
 %rename(ossimPlanetAction_print) print;
 %rename(__lshift__) operator<<;
 %rename(__rshift__) operator>>;
@@ -141,10 +155,14 @@ using namespace osg;
 %ignore ossimPlanetIdolLayer::addChild;
 %ignore ossimPlanetAnimationPath::setGeospatialPath;
 %ignore ossimPlanetAnimationPath::geospatialPath;
+*/
+
 %include "ossimPlanet/ossimPlanetConstants.h"
-%include "ossimPlanet/ossimPlanetAction.h"
-%include "ossimPlanet/ossimPlanetActionReceiver.h"
+//%include "ossimPlanet/ossimPlanetAction.h"
+//%include "ossimPlanet/ossimPlanetActionReceiver.h"
 /*%include "ossimPlanet/ossimPlanetActionRouter.h"*/
+
+
 %include "ossimPlanet/ossimPlanetArchiveMapping.h"
 %include "ossimPlanet/ossimPlanetArchive.h"
 %include "ossimPlanetCallback.i"
@@ -172,6 +190,8 @@ using namespace osg;
 %include <ossimPlanet/ossimPlanetDatabasePager.h>
 %include <ossimPlanet/ossimPlanetDepthPartitionNode.h>
 /*%include <ossimPlanet/ossimPlanetDestinationCommandAction.h>*/
+
+
 %include <ossimPlanet/ossimPlanetDistanceAccumulator.h>
 %include <ossimPlanet/ossimPlanetElevationRegistry.h>
 %include <ossimPlanet/ossimPlanetElevationFactory.h>
@@ -184,11 +204,16 @@ using namespace osg;
 /*%include <ossimPlanet/ossimPlanetGeneralRasterElevationDatabase.h>*/
 /*%include <ossimPlanet/ossimPlanetGeocoder.h>*/
 /*%include <ossimPlanet/ossimPlanetGeoRefModel.h>*/
+
+
 %include <ossimPlanet/ossimPlanetIconGeom.h>
 %include <ossimPlanet/ossimPlanetId.h>
 %include <ossimPlanet/ossimPlanetIdManager.h>
 /*%include <ossimPlanet/ossimPlanetIdolBridge.h>*/
 /*%include <ossimPlanet/ossimPlanetIdolLayer.h>*/
+
+
+
 %include <ossimPlanet/ossimPlanetImage.h>
 %include <ossimPlanet/ossimPlanetInputDevice.h>
 %include <ossimPlanet/ossimPlanetInteractionController.h>
@@ -206,6 +231,8 @@ using namespace osg;
 %include <ossimPlanet/ossimPlanetKmlNetworkLinkNode.h>
 %include <ossimPlanet/ossimPlanetKmlPlacemarkNode.h>
 /*%include <ossimPlanet/ossimPlanetKmlReaderWriter.h>*/
+
+
 %include <ossimPlanet/ossimPlanetKmlScreenOverlayNode.h>
 %include <ossimPlanet/ossimPlanetLabelGeom.h>
 %include <ossimPlanet/ossimPlanetLand.h>
@@ -233,6 +260,9 @@ using namespace osg;
 %include <ossimPlanet/ossimPlanetNavigator.h>
 %include <ossimPlanet/ossimPlanetNetworkConnection.h>
 /*%include <ossimPlanet/ossimPlanetActionRouter.h>*/
+
+
+
 %include <ossimPlanet/ossimPlanetAnimationPath.h>
 %include <ossimPlanet/ossimPlanetAnnotationLayerNode.h>
 %include <ossimPlanet/ossimPlanetAnimatedPointModel.h>

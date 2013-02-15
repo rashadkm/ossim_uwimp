@@ -4,103 +4,132 @@
 %module pyplanet
 
 %{
-#include <osg/Referenced>
-#include <osg/ref_ptr>
-#include <ossimPlanet/ossimPlanetReentrantMutex.h>
-#include <ossimPlanet/ossimPlanetExport.h>
-#include <OpenThreads/ScopedLock>
-#include <vector>
-%}
-class  OSSIMPLANET_DLL ossimPlanetCallback : public osg::Referenced
-{
-public:
-   ossimPlanetCallback()
-   :theEnableFlag(true)
-   {}
-   void setEnableFlag(bool flag)
-   {
-      OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackMutex);
-      theEnableFlag = flag;
-   }
-   bool enableFlag()const
-   {
-      OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackMutex);
-      return theEnableFlag;
-   }
-protected:
-   mutable ossimPlanetReentrantMutex theCallbackMutex;
-   bool theEnableFlag;
-};
 
-template <class T>
-class ossimPlanetCallbackListInterface
+#include <osg/MatrixTransform>
+#include <osgUtil/CullVisitor>
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/ClusterCullingCallback>
+#include <ossimPlanet/ossimPlanetBoundingBox.h>
+#include <ossimPlanet/ossimPlanetReentrantMutex.h>
+%}
+
+%{
+   class OSSIMPLANET_DLL CullNode : public osg::MatrixTransform
    {
    public:
-      typedef std::vector<osg::ref_ptr<T> > CallbackListType;
-      ossimPlanetCallbackListInterface()
-      :theBlockCallbacksFlag(false)
+      CullNode(const ossimPlanetTerrainTileId& tileId):
+      osg::MatrixTransform(),
+      theTileId(tileId),
+      theCulledFlag(false),
+      theWithinFrustumFlag(true),
+      theEyeDistance(0.0),
+      theEyeToVolumeDistance(0.0),
+      thePixelSize(0.0)
       {
-         
+         setCullingActive(false);
       }
-      virtual ~ ossimPlanetCallbackListInterface(){}
-      virtual void addCallback(T* callback)
+      CullNode(const ossimPlanetTerrainTileId& tileId,
+               osg::ref_ptr<ossimPlanetBoundingBox> boundingBox,
+               const osg::Vec3d& clusterCullingControlPoint,
+               const osg::Vec3d& clusterCullingNormal,
+               double clusterCullingDeviation,
+               double clusterCullingRadius):
+      osg::MatrixTransform(),
+      theTileId(tileId),
+      theCulledFlag(false),
+      theWithinFrustumFlag(true),
+      theBoundingBox(boundingBox),
+      theClusterCullingControlPoint(clusterCullingControlPoint),
+      theClusterCullingNormal(clusterCullingNormal),
+      theClusterCullingDeviation(clusterCullingDeviation),
+      theClusterCullingRadius(clusterCullingRadius),
+      theEyeDistance(0.0),
+      theEyeToVolumeDistance(0.0),
+      thePixelSize(0.0)
       {
-         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackListMutex);
-         if(!hasCallbackNoMutex(callback))
-         {
-            theCallbackList.push_back(callback);
-         }
+         setCullingActive(false);
       }
-	  virtual void addCallback(osg::ref_ptr<T> callback)
+      CullNode(const CullNode& src, const osg::CopyOp& copyop=osg::CopyOp::SHALLOW_COPY)
+      :osg::MatrixTransform(src, copyop),
+      theTileId(src.theTileId),
+      theCulledFlag(src.theCulledFlag),
+      theWithinFrustumFlag(src.theWithinFrustumFlag),
+      theBoundingBox(new ossimPlanetBoundingBox(*src.theBoundingBox)),
+      theClusterCullingControlPoint(src.theClusterCullingControlPoint),
+      theClusterCullingNormal(src.theClusterCullingNormal),
+      theClusterCullingDeviation(src.theClusterCullingDeviation),
+      theClusterCullingRadius(src.theClusterCullingRadius),
+      theEyeDistance(0.0),
+      theEyeToVolumeDistance(0.0),
+      thePixelSize(0.0)
+     {
+         setCullingActive(false);
+      }
+      const ossimPlanetTerrainTileId& tileId()const
       {
-			addCallback(callback.get());
+         return theTileId;
       }
-      virtual void removeCallback(T* callback);
-	  virtual void removeCallback(osg::ref_ptr<T> callback)
-		{
-			removeCallback(callback.get());
-		}
-      virtual void blockCallbacks(bool flag)
+      void setTileId(const ossimPlanetTerrainTileId& id)
       {
-         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackListMutex);
-         theBlockCallbacksFlag = flag;
+         theTileId = id;
       }
-      bool hasCallback(const T* callback)const;
+      void setBoundingBox(osg::ref_ptr<ossimPlanetBoundingBox> box)
+      {
+         theBoundingBox = box.get();
+      }
+      
+      const ossimPlanetBoundingBox* boundingBox()const
+      {
+         return theBoundingBox.get();
+      }
+      double eyeDistance()const
+      {
+         return theEyeDistance;
+      }
+      double eyeToVolumeDistance()const
+      {
+         return theEyeToVolumeDistance;
+      }
+      virtual void traverse(osg::NodeVisitor& nv);
+      
+      void setCulledFlag(bool flag)
+      {
+         theCulledFlag = flag;
+      }
+      bool isCulled()const
+      {
+         return theCulledFlag;
+      }
+      virtual osg::BoundingSphere computeBound() const;
+      
+      double pixelSize()const
+      {
+         return thePixelSize;
+      }
+      bool withinFrustumFlag()const
+      {
+         return theWithinFrustumFlag;
+      }
    protected:
-      bool hasCallbackNoMutex(const T* callback)const;
-      
-      mutable ossimPlanetReentrantMutex theCallbackListMutex;
-      CallbackListType theCallbackList;
-      bool theBlockCallbacksFlag;
-      
-   };
-template <class T>
-void ossimPlanetCallbackListInterface<T>::removeCallback(T* callback)
-{
-   OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackListMutex);
-   unsigned int idx;
-   for(idx = 0; idx < theCallbackList.size(); ++idx)
-   {
-      if(theCallbackList[idx] == callback)
-      {
-         theCallbackList.erase(theCallbackList.begin() + idx);
-         break;
-      }
-   }
-}
-
-template <class T>
-bool ossimPlanetCallbackListInterface<T>::hasCallback(const T* callback)const
-{
-   OpenThreads::ScopedLock<OpenThreads::Mutex> lock(theCallbackListMutex);
-   return hasCallbackNoMutex(callback);
-}
-
-template <class T>
-bool ossimPlanetCallbackListInterface<T>::hasCallbackNoMutex(const T* callback)const;
+      ossimPlanetTerrainTileId theTileId;
+      bool theCulledFlag;
+      bool theWithinFrustumFlag;
+      osg::ref_ptr<ossimPlanetBoundingBox> theBoundingBox;
+      osg::Vec3d theClusterCullingControlPoint;
+      osg::Vec3d theClusterCullingNormal;
+      double theClusterCullingDeviation;
+      double theClusterCullingRadius;
+      double theEyeDistance;
+      double theEyeToVolumeDistance;
+      double thePixelSize;
+  };
+  
+  
+%}
 
 
-%template(ossimPlanetCallbackIface_ossimPlanetOperationCallback) ossimPlanetCallbackListInterface<ossimPlanetOperationCallback>;
-%template(ossimPlanetCallbackIface_ossimPlanetNodeCallback) ossimPlanetCallbackListInterface<ossimPlanetNodeCallback>;
-%template(ossimPlanetCallbackIface_ossimPlanetTextureLayerCallback) ossimPlanetCallbackListInterface<ossimPlanetTextureLayerCallback>;
-%template(ossimPlanetCallbackIface_ossimPlanetLsrSpaceTransformCallback)ossimPlanetCallbackListInterface< ossimPlanetLsrSpaceTransformCallback >;
+/*%template(ossimPlanetCallbackIface_ossimPlanetOperationCallback) ossimPlanetCallbackListInterface<ossimPlanetOperationCallback>;*/
+/*%template(ossimPlanetCallbackIface_ossimPlanetNodeCallback) ossimPlanetCallbackListInterface<ossimPlanetNodeCallback>;*/
+/*%template(ossimPlanetCallbackIface_ossimPlanetTextureLayerCallback) ossimPlanetCallbackListInterface<ossimPlanetTextureLayerCallback>;*/
+/*%template(ossimPlanetCallbackIface_ossimPlanetLsrSpaceTransformCallback)ossimPlanetCallbackListInterface< ossimPlanetLsrSpaceTransformCallback >;*/
