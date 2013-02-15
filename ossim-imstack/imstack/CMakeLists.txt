@@ -42,6 +42,7 @@ main.cpp)
 
 
 INCLUDE_DIRECTORIES(imagestack_nhv/src/)
+LINK_DIRECTORIES(/install/OpenSceneGraph-2.8.5/lib)
 
 
 TARGET_LINK_LIBRARIES(${APPNAME} fftw3f ossim  )
