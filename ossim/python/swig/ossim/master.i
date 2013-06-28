@@ -610,7 +610,21 @@ typedef signed long long       ossim_sint64;
 %include "projection/ossimApplanixEcefModel.i"
 
 /* Importing Util Interfaces */
-%include "util/ossimElevUtil.i"
+/*%include "util/ossimElevUtil.i" */
+
+/*this block can be removed later*/
+%module pyossim
+%{
+#include <map>
+#include <vector>
+
+#include <ossim/base/ossimConstants.h>
+#include <ossim/base/ossimReferenced.h>
+#include <ossim/base/ossimRefPtr.h>
+#include <ossim/imaging/ossimImageSource.h>
+#include <ossim/imaging/ossimSingleImageChain.h>
+#include <ossim/projection/ossimMapProjection.h>
+%}
 %include "util/ossimFileWalker.i"
 %include "util/ossimInfo.i"
 %include "util/ossimRpfUtil.i"
