@@ -256,6 +256,7 @@ class ossimImageHandlerRegistry(ossimObjectFactory,ossimFactoryListInterface_oss
     __swig_getmethods__["instance"] = lambda x: _pyossim.ossimImageHandlerRegistry_instance
     if _newclass:instance = staticmethod(_pyossim.ossimImageHandlerRegistry_instance)
     def open(self, *args): return _pyossim.ossimImageHandlerRegistry_open(self, *args)
+    def openOverview(self, *args): return _pyossim.ossimImageHandlerRegistry_openOverview(self, *args)
     def createObject(self, *args): return _pyossim.ossimImageHandlerRegistry_createObject(self, *args)
     def openBySuffix(self, *args): return _pyossim.ossimImageHandlerRegistry_openBySuffix(self, *args)
     def getImageHandlersBySuffix(self, *args): return _pyossim.ossimImageHandlerRegistry_getImageHandlersBySuffix(self, *args)
@@ -938,6 +939,7 @@ class ossimConnectableObjectPtr(_object):
 ossimConnectableObjectPtr_swigregister = _pyossim.ossimConnectableObjectPtr_swigregister
 ossimConnectableObjectPtr_swigregister(ossimConnectableObjectPtr)
 
+ossimConnectableObject_HEADER = _pyossim.ossimConnectableObject_HEADER
 class ossimConnectableObject(ossimObject,ossimListenerManager,ossimPropertyInterface):
     __swig_setmethods__ = {}
     for _s in [ossimObject,ossimListenerManager,ossimPropertyInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -1891,6 +1893,7 @@ class ossimErrorStatusInterface(_object):
     def getErrorStatusString(self): return _pyossim.ossimErrorStatusInterface_getErrorStatusString(self)
     def setErrorStatus(self, *args): return _pyossim.ossimErrorStatusInterface_setErrorStatus(self, *args)
     def clearErrorStatus(self): return _pyossim.ossimErrorStatusInterface_clearErrorStatus(self)
+    def hasError(self): return _pyossim.ossimErrorStatusInterface_hasError(self)
     def ossimErrorStatusInterface_print(self, *args): return _pyossim.ossimErrorStatusInterface_ossimErrorStatusInterface_print(self, *args)
 ossimErrorStatusInterface_swigregister = _pyossim.ossimErrorStatusInterface_swigregister
 ossimErrorStatusInterface_swigregister(ossimErrorStatusInterface)
@@ -3064,6 +3067,8 @@ class ossimDrect(_object):
     def expand(self, *args): return _pyossim.ossimDrect_expand(self, *args)
     def toString(self): return _pyossim.ossimDrect_toString(self)
     def toRect(self, *args): return _pyossim.ossimDrect_toRect(self, *args)
+    def saveState(self, *args): return _pyossim.ossimDrect_saveState(self, *args)
+    def loadState(self, *args): return _pyossim.ossimDrect_loadState(self, *args)
     def splitToQuad(self, *args): return _pyossim.ossimDrect_splitToQuad(self, *args)
     def findClosestEdgePointTo(self, *args): return _pyossim.ossimDrect_findClosestEdgePointTo(self, *args)
     def clipToRect(self, *args): return _pyossim.ossimDrect_clipToRect(self, *args)
@@ -4025,6 +4030,7 @@ class ossimBandMergeSource(ossimImageCombiner):
 ossimBandMergeSource_swigregister = _pyossim.ossimBandMergeSource_swigregister
 ossimBandMergeSource_swigregister(ossimBandMergeSource)
 
+ossimMemoryImageSource_HEADER = _pyossim.ossimMemoryImageSource_HEADER
 class ossimMemoryImageSource(ossimImageSource):
     __swig_setmethods__ = {}
     for _s in [ossimImageSource]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -4124,8 +4130,7 @@ class ossimElevSource(ossimSource):
     def getSeaLevelValue(self): return _pyossim.ossimElevSource_getSeaLevelValue(self)
     def pointHasCoverage(self, *args): return _pyossim.ossimElevSource_pointHasCoverage(self, *args)
     def getMeanSpacingMeters(self): return _pyossim.ossimElevSource_getMeanSpacingMeters(self)
-    def getAccuracyLE90(self, *args): return _pyossim.ossimElevSource_getAccuracyLE90(self, *args)
-    def getAccuracyCE90(self, *args): return _pyossim.ossimElevSource_getAccuracyCE90(self, *args)
+    def getAccuracyInfo(self, *args): return _pyossim.ossimElevSource_getAccuracyInfo(self, *args)
     def getBoundingGndRect(self): return _pyossim.ossimElevSource_getBoundingGndRect(self)
     def const_ossimConnectableObject_canConnectMyInputTo(self, *args): return _pyossim.ossimElevSource_const_ossimConnectableObject_canConnectMyInputTo(self, *args)
     def initialize(self): return _pyossim.ossimElevSource_initialize(self)
@@ -4171,8 +4176,7 @@ class ossimElevCellHandler(ossimElevSource):
     def getPostValue(self, *args): return _pyossim.ossimElevCellHandler_getPostValue(self, *args)
     def getMeanSpacingMeters(self): return _pyossim.ossimElevCellHandler_getMeanSpacingMeters(self)
     def pointHasCoverage(self, *args): return _pyossim.ossimElevCellHandler_pointHasCoverage(self, *args)
-    def getAccuracyLE90(self, *args): return _pyossim.ossimElevCellHandler_getAccuracyLE90(self, *args)
-    def getAccuracyCE90(self, *args): return _pyossim.ossimElevCellHandler_getAccuracyCE90(self, *args)
+    def getAccuracyInfo(self, *args): return _pyossim.ossimElevCellHandler_getAccuracyInfo(self, *args)
     def const_ossimConnectableObject_canConnectMyInputTo(self, *args): return _pyossim.ossimElevCellHandler_const_ossimConnectableObject_canConnectMyInputTo(self, *args)
     def close(self): return _pyossim.ossimElevCellHandler_close(self)
     def open(self, *args): return _pyossim.ossimElevCellHandler_open(self, *args)
@@ -4206,6 +4210,7 @@ class ossimDtedHandler(ossimElevCellHandler):
     def productLevel(self): return _pyossim.ossimDtedHandler_productLevel(self)
     def compilationDate(self): return _pyossim.ossimDtedHandler_compilationDate(self)
     def isOpen(self): return _pyossim.ossimDtedHandler_isOpen(self)
+    def getAccuracyInfo(self, *args): return _pyossim.ossimDtedHandler_getAccuracyInfo(self, *args)
     def vol(self): return _pyossim.ossimDtedHandler_vol(self)
     def hdr(self): return _pyossim.ossimDtedHandler_hdr(self)
     def uhl(self): return _pyossim.ossimDtedHandler_uhl(self)
@@ -4366,6 +4371,7 @@ class ossimKeywordlist(ossimErrorStatusInterface,ossimReferenced):
     def getExpandEnvVarsFlag(self): return _pyossim.ossimKeywordlist_getExpandEnvVarsFlag(self)
     def addPair(self, *args): return _pyossim.ossimKeywordlist_addPair(self, *args)
     def add(self, *args): return _pyossim.ossimKeywordlist_add(self, *args)
+    def hasKey(self, *args): return _pyossim.ossimKeywordlist_hasKey(self, *args)
     def findKey(self, *args): return _pyossim.ossimKeywordlist_findKey(self, *args)
     def find(self, *args): return _pyossim.ossimKeywordlist_find(self, *args)
     def remove(self, *args): return _pyossim.ossimKeywordlist_remove(self, *args)
@@ -4398,6 +4404,7 @@ class ossimKeywordlist(ossimErrorStatusInterface,ossimReferenced):
 ossimKeywordlist_swigregister = _pyossim.ossimKeywordlist_swigregister
 ossimKeywordlist_swigregister(ossimKeywordlist)
 DEFAULT_DELIMITER = cvar.DEFAULT_DELIMITER
+ossimKeywordlist.NULL_KW = _pyossim.cvar.ossimKeywordlist_NULL_KW
 
 class vectorOssimFileName(_object):
     __swig_setmethods__ = {}
@@ -4446,12 +4453,13 @@ class vectorOssimFileName(_object):
 vectorOssimFileName_swigregister = _pyossim.vectorOssimFileName_swigregister
 vectorOssimFileName_swigregister(vectorOssimFileName)
 
-class ossimGeneralRasterInfo(ossimObject,ossimErrorStatusInterface):
+ossimGeneralRasterInfo_HEADER = _pyossim.ossimGeneralRasterInfo_HEADER
+class ossimGeneralRasterInfo(ossimObject):
     __swig_setmethods__ = {}
-    for _s in [ossimObject,ossimErrorStatusInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    for _s in [ossimObject]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, ossimGeneralRasterInfo, name, value)
     __swig_getmethods__ = {}
-    for _s in [ossimObject,ossimErrorStatusInterface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    for _s in [ossimObject]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, ossimGeneralRasterInfo, name)
     __repr__ = _swig_repr
     NONE = _pyossim.ossimGeneralRasterInfo_NONE
@@ -4462,6 +4470,7 @@ class ossimGeneralRasterInfo(ossimObject,ossimErrorStatusInterface):
         this = _pyossim.new_ossimGeneralRasterInfo(*args)
         try: self.this.append(this)
         except: self.this = this
+    def __set__(self, *args): return _pyossim.ossimGeneralRasterInfo___set__(self, *args)
     __swig_destroy__ = _pyossim.delete_ossimGeneralRasterInfo
     __del__ = lambda self : None;
     def imageRect(self): return _pyossim.ossimGeneralRasterInfo_imageRect(self)
@@ -4471,17 +4480,10 @@ class ossimGeneralRasterInfo(ossimObject,ossimErrorStatusInterface):
     def headerSize(self): return _pyossim.ossimGeneralRasterInfo_headerSize(self)
     def fillToNullsMode(self): return _pyossim.ossimGeneralRasterInfo_fillToNullsMode(self)
     def setFillToNullsMode(self, *args): return _pyossim.ossimGeneralRasterInfo_setFillToNullsMode(self, *args)
-    def setMinPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_setMinPixelValue(self, *args)
-    def getMinPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_getMinPixelValue(self, *args)
-    def setMaxPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_setMaxPixelValue(self, *args)
-    def getMaxPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_getMaxPixelValue(self, *args)
-    def setNullPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_setNullPixelValue(self, *args)
-    def getNullPixelValue(self, *args): return _pyossim.ossimGeneralRasterInfo_getNullPixelValue(self, *args)
-    def setNumberOfBands(self, *args): return _pyossim.ossimGeneralRasterInfo_setNumberOfBands(self, *args)
-    def pixelsToChop(self): return _pyossim.ossimGeneralRasterInfo_pixelsToChop(self)
     def numberOfBands(self): return _pyossim.ossimGeneralRasterInfo_numberOfBands(self)
+    def bytesPerPixel(self): return _pyossim.ossimGeneralRasterInfo_bytesPerPixel(self)
+    def pixelsToChop(self): return _pyossim.ossimGeneralRasterInfo_pixelsToChop(self)
     def interleaveType(self): return _pyossim.ossimGeneralRasterInfo_interleaveType(self)
-    def getScalarType(self): return _pyossim.ossimGeneralRasterInfo_getScalarType(self)
     def validLines(self): return _pyossim.ossimGeneralRasterInfo_validLines(self)
     def rawLines(self): return _pyossim.ossimGeneralRasterInfo_rawLines(self)
     def bytesPerRawLine(self): return _pyossim.ossimGeneralRasterInfo_bytesPerRawLine(self)
@@ -4491,6 +4493,7 @@ class ossimGeneralRasterInfo(ossimObject,ossimErrorStatusInterface):
     def offsetToFirstValidSample(self): return _pyossim.ossimGeneralRasterInfo_offsetToFirstValidSample(self)
     def getImageFileList(self): return _pyossim.ossimGeneralRasterInfo_getImageFileList(self)
     def setImageFileList(self, *args): return _pyossim.ossimGeneralRasterInfo_setImageFileList(self, *args)
+    def setImageFile(self, *args): return _pyossim.ossimGeneralRasterInfo_setImageFile(self, *args)
     def setHeaderSize(self, *args): return _pyossim.ossimGeneralRasterInfo_setHeaderSize(self, *args)
     def setInterleaveType(self, *args): return _pyossim.ossimGeneralRasterInfo_setInterleaveType(self, *args)
     def ossimGeneralRasterInfo_print(self, *args): return _pyossim.ossimGeneralRasterInfo_ossimGeneralRasterInfo_print(self, *args)
@@ -4498,11 +4501,13 @@ class ossimGeneralRasterInfo(ossimObject,ossimErrorStatusInterface):
     def setValidImageRect(self, *args): return _pyossim.ossimGeneralRasterInfo_setValidImageRect(self, *args)
     def setRawImageRect(self, *args): return _pyossim.ossimGeneralRasterInfo_setRawImageRect(self, *args)
     def setSubImageOffset(self, *args): return _pyossim.ossimGeneralRasterInfo_setSubImageOffset(self, *args)
-    def bytesPerPixel(self, *args): return _pyossim.ossimGeneralRasterInfo_bytesPerPixel(self, *args)
     def getImageDataByteOrder(self): return _pyossim.ossimGeneralRasterInfo_getImageDataByteOrder(self)
     def setImageDataByteOrder(self, *args): return _pyossim.ossimGeneralRasterInfo_setImageDataByteOrder(self, *args)
     def saveState(self, *args): return _pyossim.ossimGeneralRasterInfo_saveState(self, *args)
     def loadState(self, *args): return _pyossim.ossimGeneralRasterInfo_loadState(self, *args)
+    def open(self, *args): return _pyossim.ossimGeneralRasterInfo_open(self, *args)
+    def getImageMetaData(self, *args): return _pyossim.ossimGeneralRasterInfo_getImageMetaData(self, *args)
+    def initializeFromEnviHdr(self, *args): return _pyossim.ossimGeneralRasterInfo_initializeFromEnviHdr(self, *args)
 ossimGeneralRasterInfo_swigregister = _pyossim.ossimGeneralRasterInfo_swigregister
 ossimGeneralRasterInfo_swigregister(ossimGeneralRasterInfo)
 
@@ -5237,6 +5242,8 @@ class ossimImageGeometryRefPtr(_object):
     def getTargetRrds(self): return _pyossim.ossimImageGeometryRefPtr_getTargetRrds(self)
     def isEqualTo(self, *args): return _pyossim.ossimImageGeometryRefPtr_isEqualTo(self, *args)
     def getAdjustableParameterInterface(self, *args): return _pyossim.ossimImageGeometryRefPtr_getAdjustableParameterInterface(self, *args)
+    def upIsUpAngle(self): return _pyossim.ossimImageGeometryRefPtr_upIsUpAngle(self)
+    def northUpAngle(self): return _pyossim.ossimImageGeometryRefPtr_northUpAngle(self)
     def getShortName(self): return _pyossim.ossimImageGeometryRefPtr_getShortName(self)
     def getLongName(self): return _pyossim.ossimImageGeometryRefPtr_getLongName(self)
     def getDescription(self): return _pyossim.ossimImageGeometryRefPtr_getDescription(self)
@@ -5277,6 +5284,7 @@ class ossimImageGeometry(ossimObject):
     def setProjection(self, *args): return _pyossim.ossimImageGeometry_setProjection(self, *args)
     def getTransform(self, *args): return _pyossim.ossimImageGeometry_getTransform(self, *args)
     def getProjection(self, *args): return _pyossim.ossimImageGeometry_getProjection(self, *args)
+    def getAsMapProjection(self, *args): return _pyossim.ossimImageGeometry_getAsMapProjection(self, *args)
     def hasProjection(self): return _pyossim.ossimImageGeometry_hasProjection(self)
     def hasTransform(self): return _pyossim.ossimImageGeometry_hasTransform(self)
     def isAffectedByElevation(self): return _pyossim.ossimImageGeometry_isAffectedByElevation(self)
@@ -5305,6 +5313,8 @@ class ossimImageGeometry(ossimObject):
     def computeImageToGroundPartialsWRTAdjParam(self, *args): return _pyossim.ossimImageGeometry_computeImageToGroundPartialsWRTAdjParam(self, *args)
     def computeImageToGroundPartialsWRTAdjParams(self, *args): return _pyossim.ossimImageGeometry_computeImageToGroundPartialsWRTAdjParams(self, *args)
     def computeGroundToImagePartials(self, *args): return _pyossim.ossimImageGeometry_computeGroundToImagePartials(self, *args)
+    def upIsUpAngle(self): return _pyossim.ossimImageGeometry_upIsUpAngle(self)
+    def northUpAngle(self): return _pyossim.ossimImageGeometry_northUpAngle(self)
 ossimImageGeometry_swigregister = _pyossim.ossimImageGeometry_swigregister
 ossimImageGeometry_swigregister(ossimImageGeometry)
 
@@ -5364,6 +5374,8 @@ class ossimImageHandler(ossimImageSource):
     def getValidImageVertices(self, *args): return _pyossim.ossimImageHandler_getValidImageVertices(self, *args)
     def isBandSelector(self): return _pyossim.ossimImageHandler_isBandSelector(self)
     def setOutputBandList(self, *args): return _pyossim.ossimImageHandler_setOutputBandList(self, *args)
+    def setOutputToInputBandList(self): return _pyossim.ossimImageHandler_setOutputToInputBandList(self)
+    def isIdentityBandList(self, *args): return _pyossim.ossimImageHandler_isIdentityBandList(self, *args)
     def isImageTiled(self): return _pyossim.ossimImageHandler_isImageTiled(self)
     def getImageTileWidth(self): return _pyossim.ossimImageHandler_getImageTileWidth(self)
     def getImageTileHeight(self): return _pyossim.ossimImageHandler_getImageTileHeight(self)
@@ -5379,6 +5391,7 @@ class ossimImageHandler(ossimImageSource):
     def setNullPixelValue(self, *args): return _pyossim.ossimImageHandler_setNullPixelValue(self, *args)
     def getCurrentEntry(self): return _pyossim.ossimImageHandler_getCurrentEntry(self)
     def getNumberOfEntries(self): return _pyossim.ossimImageHandler_getNumberOfEntries(self)
+    def getEntryName(self, *args): return _pyossim.ossimImageHandler_getEntryName(self, *args)
     def getEntryList(self, *args): return _pyossim.ossimImageHandler_getEntryList(self, *args)
     def getEntryStringList(self, *args): return _pyossim.ossimImageHandler_getEntryStringList(self, *args)
     def useEntryIndex(self): return _pyossim.ossimImageHandler_useEntryIndex(self)
@@ -5400,6 +5413,7 @@ class ossimImageHandler(ossimImageSource):
 ossimImageHandler_swigregister = _pyossim.ossimImageHandler_swigregister
 ossimImageHandler_swigregister(ossimImageHandler)
 
+ossimImageMetaData_HEADER = _pyossim.ossimImageMetaData_HEADER
 class ossimImageMetaData(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ossimImageMetaData, name, value)
@@ -5410,15 +5424,16 @@ class ossimImageMetaData(_object):
         this = _pyossim.new_ossimImageMetaData(*args)
         try: self.this.append(this)
         except: self.this = this
+    def __set__(self, *args): return _pyossim.ossimImageMetaData___set__(self, *args)
     __swig_destroy__ = _pyossim.delete_ossimImageMetaData
     __del__ = lambda self : None;
     def clear(self): return _pyossim.ossimImageMetaData_clear(self)
-    def clearBandInfo(self): return _pyossim.ossimImageMetaData_clearBandInfo(self)
     def setDefaultsForArrays(self): return _pyossim.ossimImageMetaData_setDefaultsForArrays(self)
     def setNumberOfBands(self, *args): return _pyossim.ossimImageMetaData_setNumberOfBands(self, *args)
     def getNumberOfBands(self): return _pyossim.ossimImageMetaData_getNumberOfBands(self)
     def setScalarType(self, *args): return _pyossim.ossimImageMetaData_setScalarType(self, *args)
     def getScalarType(self): return _pyossim.ossimImageMetaData_getScalarType(self)
+    def getBytesPerPixel(self): return _pyossim.ossimImageMetaData_getBytesPerPixel(self)
     def getMinPix(self, *args): return _pyossim.ossimImageMetaData_getMinPix(self, *args)
     def setMinPix(self, *args): return _pyossim.ossimImageMetaData_setMinPix(self, *args)
     def setMaxPix(self, *args): return _pyossim.ossimImageMetaData_setMaxPix(self, *args)
@@ -5434,11 +5449,11 @@ class ossimImageMetaData(_object):
     def getMinValuesValidFlag(self): return _pyossim.ossimImageMetaData_getMinValuesValidFlag(self)
     def getMaxValuesValidFlag(self): return _pyossim.ossimImageMetaData_getMaxValuesValidFlag(self)
     def getNullValuesValidFlag(self): return _pyossim.ossimImageMetaData_getNullValuesValidFlag(self)
-    def __set__(self, *args): return _pyossim.ossimImageMetaData___set__(self, *args)
     def isValid(self): return _pyossim.ossimImageMetaData_isValid(self)
-    def assign(self, *args): return _pyossim.ossimImageMetaData_assign(self, *args)
     def loadState(self, *args): return _pyossim.ossimImageMetaData_loadState(self, *args)
     def saveState(self, *args): return _pyossim.ossimImageMetaData_saveState(self, *args)
+    def updateMetaData(self, *args): return _pyossim.ossimImageMetaData_updateMetaData(self, *args)
+    def ossimImageData_print(self, *args): return _pyossim.ossimImageMetaData_ossimImageData_print(self, *args)
 ossimImageMetaData_swigregister = _pyossim.ossimImageMetaData_swigregister
 ossimImageMetaData_swigregister(ossimImageMetaData)
 
@@ -5730,6 +5745,7 @@ class ossimTiffTileSource(ossimImageHandler):
     READ_RGBA_U8A_STRIP = _pyossim.ossimTiffTileSource_READ_RGBA_U8A_STRIP
     READ_SCAN_LINE = _pyossim.ossimTiffTileSource_READ_SCAN_LINE
     READ_TILE = _pyossim.ossimTiffTileSource_READ_TILE
+    READ_U16_STRIP = _pyossim.ossimTiffTileSource_READ_U16_STRIP
     def __init__(self): 
         this = _pyossim.new_ossimTiffTileSource()
         try: self.this.append(this)
@@ -5741,6 +5757,9 @@ class ossimTiffTileSource(ossimImageHandler):
     def getTile(self, *args): return _pyossim.ossimTiffTileSource_getTile(self, *args)
     def getNumberOfInputBands(self): return _pyossim.ossimTiffTileSource_getNumberOfInputBands(self)
     def getNumberOfOutputBands(self): return _pyossim.ossimTiffTileSource_getNumberOfOutputBands(self)
+    def isBandSelector(self): return _pyossim.ossimTiffTileSource_isBandSelector(self)
+    def setOutputBandList(self, *args): return _pyossim.ossimTiffTileSource_setOutputBandList(self, *args)
+    def getOutputBandList(self, *args): return _pyossim.ossimTiffTileSource_getOutputBandList(self, *args)
     def getNumberOfLines(self, resLevel = 0): return _pyossim.ossimTiffTileSource_getNumberOfLines(self, resLevel)
     def getNumberOfSamples(self, resLevel = 0): return _pyossim.ossimTiffTileSource_getNumberOfSamples(self, resLevel)
     def getNumberOfDirectories(self): return _pyossim.ossimTiffTileSource_getNumberOfDirectories(self)
@@ -6014,12 +6033,12 @@ def ossimOverviewBuilderFactoryRegistry_instance():
 ossimOverviewBuilderFactoryRegistry_instance = _pyossim.ossimOverviewBuilderFactoryRegistry_instance
 
 ossimOverviewSequencer_HEADER = _pyossim.ossimOverviewSequencer_HEADER
-class ossimOverviewSequencer(ossimReferenced):
+class ossimOverviewSequencer(ossimReferenced,ossimErrorStatusInterface):
     __swig_setmethods__ = {}
-    for _s in [ossimReferenced]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    for _s in [ossimReferenced,ossimErrorStatusInterface]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, ossimOverviewSequencer, name, value)
     __swig_getmethods__ = {}
-    for _s in [ossimReferenced]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    for _s in [ossimReferenced,ossimErrorStatusInterface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, ossimOverviewSequencer, name)
     __repr__ = _swig_repr
     def __init__(self): 
@@ -6153,6 +6172,7 @@ class ossimApplanixEOFile(ossimReferenced):
 ossimApplanixEOFile_swigregister = _pyossim.ossimApplanixEOFile_swigregister
 ossimApplanixEOFile_swigregister(ossimApplanixEOFile)
 
+ossimEpsgProjectionDatabase_HEADER = _pyossim.ossimEpsgProjectionDatabase_HEADER
 class ossimEpsgProjectionDatabase(ossimReferenced):
     __swig_setmethods__ = {}
     for _s in [ossimReferenced]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -6753,71 +6773,6 @@ class ossimApplanixUtmModel(ossimSensorModel):
 ossimApplanixUtmModel_swigregister = _pyossim.ossimApplanixUtmModel_swigregister
 ossimApplanixUtmModel_swigregister(ossimApplanixUtmModel)
 
-class ossimApplanixEcefModel(ossimSensorModel):
-    __swig_setmethods__ = {}
-    for _s in [ossimSensorModel]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimApplanixEcefModel, name, value)
-    __swig_getmethods__ = {}
-    for _s in [ossimSensorModel]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
-    __getattr__ = lambda self, name: _swig_getattr(self, ossimApplanixEcefModel, name)
-    __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _pyossim.new_ossimApplanixEcefModel(*args)
-        try: self.this.append(this)
-        except: self.this = this
-    def dup(self): return _pyossim.ossimApplanixEcefModel_dup(self)
-    def imagingRay(self, *args): return _pyossim.ossimApplanixEcefModel_imagingRay(self, *args)
-    def lineSampleToWorld(self, *args): return _pyossim.ossimApplanixEcefModel_lineSampleToWorld(self, *args)
-    def lineSampleHeightToWorld(self, *args): return _pyossim.ossimApplanixEcefModel_lineSampleHeightToWorld(self, *args)
-    def worldToLineSample(self, *args): return _pyossim.ossimApplanixEcefModel_worldToLineSample(self, *args)
-    def updateModel(self): return _pyossim.ossimApplanixEcefModel_updateModel(self)
-    def setPrincipalPoint(self, *args): return _pyossim.ossimApplanixEcefModel_setPrincipalPoint(self, *args)
-    def insideImage(self, *args): return _pyossim.ossimApplanixEcefModel_insideImage(self, *args)
-    def setRollPitchHeading(self, *args): return _pyossim.ossimApplanixEcefModel_setRollPitchHeading(self, *args)
-    def setPixelSize(self, *args): return _pyossim.ossimApplanixEcefModel_setPixelSize(self, *args)
-    def setImageRect(self, *args): return _pyossim.ossimApplanixEcefModel_setImageRect(self, *args)
-    def setFocalLength(self, *args): return _pyossim.ossimApplanixEcefModel_setFocalLength(self, *args)
-    def setPlatformPosition(self, *args): return _pyossim.ossimApplanixEcefModel_setPlatformPosition(self, *args)
-    def saveState(self, *args): return _pyossim.ossimApplanixEcefModel_saveState(self, *args)
-    def loadState(self, *args): return _pyossim.ossimApplanixEcefModel_loadState(self, *args)
-    def initAdjustableParameters(self): return _pyossim.ossimApplanixEcefModel_initAdjustableParameters(self)
-    def useForward(self): return _pyossim.ossimApplanixEcefModel_useForward(self)
-    def setupOptimizer(self, *args): return _pyossim.ossimApplanixEcefModel_setupOptimizer(self, *args)
-    __swig_destroy__ = _pyossim.delete_ossimApplanixEcefModel
-    __del__ = lambda self : None;
-ossimApplanixEcefModel_swigregister = _pyossim.ossimApplanixEcefModel_swigregister
-ossimApplanixEcefModel_swigregister(ossimApplanixEcefModel)
-
-ossimElevUtil_HEADER = _pyossim.ossimElevUtil_HEADER
-class ossimElevUtil(ossimReferenced):
-    __swig_setmethods__ = {}
-    for _s in [ossimReferenced]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ossimElevUtil, name, value)
-    __swig_getmethods__ = {}
-    for _s in [ossimReferenced]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
-    __getattr__ = lambda self, name: _swig_getattr(self, ossimElevUtil, name)
-    __repr__ = _swig_repr
-    OSSIM_DEM_OP_UNKNOWN = _pyossim.ossimElevUtil_OSSIM_DEM_OP_UNKNOWN
-    OSSIM_DEM_OP_HILL_SHADE = _pyossim.ossimElevUtil_OSSIM_DEM_OP_HILL_SHADE
-    OSSIM_DEM_OP_COLOR_RELIEF = _pyossim.ossimElevUtil_OSSIM_DEM_OP_COLOR_RELIEF
-    OSSIM_DEM_OP_ORTHO = _pyossim.ossimElevUtil_OSSIM_DEM_OP_ORTHO
-    OSSIM_DEM_PROJ_UNKNOWN = _pyossim.ossimElevUtil_OSSIM_DEM_PROJ_UNKNOWN
-    OSSIM_DEM_PROJ_GEO = _pyossim.ossimElevUtil_OSSIM_DEM_PROJ_GEO
-    OSSIM_DEM_PROJ_GEO_SCALED = _pyossim.ossimElevUtil_OSSIM_DEM_PROJ_GEO_SCALED
-    OSSIM_DEM_PROJ_INPUT = _pyossim.ossimElevUtil_OSSIM_DEM_PROJ_INPUT
-    OSSIM_DEM_PROJ_UTM = _pyossim.ossimElevUtil_OSSIM_DEM_PROJ_UTM
-    def __init__(self): 
-        this = _pyossim.new_ossimElevUtil()
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _pyossim.delete_ossimElevUtil
-    __del__ = lambda self : None;
-    def initialize(self, *args): return _pyossim.ossimElevUtil_initialize(self, *args)
-    def execute(self): return _pyossim.ossimElevUtil_execute(self)
-    def getOutputFilename(self, *args): return _pyossim.ossimElevUtil_getOutputFilename(self, *args)
-ossimElevUtil_swigregister = _pyossim.ossimElevUtil_swigregister
-ossimElevUtil_swigregister(ossimElevUtil)
-
 ossimInfo_HEADER = _pyossim.ossimInfo_HEADER
 class ossimInfo(ossimReferenced):
     __swig_setmethods__ = {}
@@ -6846,6 +6801,9 @@ class ossimInfo(ossimReferenced):
     def getImagePalette(self, *args): return _pyossim.ossimInfo_getImagePalette(self, *args)
     def getImageInfo(self, *args): return _pyossim.ossimInfo_getImageInfo(self, *args)
     def getImageGeometryInfo(self, *args): return _pyossim.ossimInfo_getImageGeometryInfo(self, *args)
+    def getCenterImage(self, *args): return _pyossim.ossimInfo_getCenterImage(self, *args)
+    def getCenterGround(self, *args): return _pyossim.ossimInfo_getCenterGround(self, *args)
+    def getUpIsUpAngle(self, *args): return _pyossim.ossimInfo_getUpIsUpAngle(self, *args)
     def getImageRect(self, *args): return _pyossim.ossimInfo_getImageRect(self, *args)
     def isImageEntryOverview(self): return _pyossim.ossimInfo_isImageEntryOverview(self)
     def printConfiguration(self, *args): return _pyossim.ossimInfo_printConfiguration(self, *args)

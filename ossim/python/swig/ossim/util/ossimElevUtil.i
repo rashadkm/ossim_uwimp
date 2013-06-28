@@ -17,10 +17,10 @@
 #include <ossim/imaging/ossimImageSource.h>
 #include <ossim/imaging/ossimSingleImageChain.h>
 #include <ossim/projection/ossimMapProjection.h>
-#include <ossim/util/ossimElevUtil.h>
+//#include <ossim/util/ossimElevUtil.h>
 
 %}
 
 /* Wrapping class ossimElevUtil */
 %include "ossim/base/ossimConstants.h"
-%include "ossim/util/ossimElevUtil.h"
+//%include "ossim/util/ossimElevUtil.h"
