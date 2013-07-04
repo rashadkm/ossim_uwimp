@@ -1,6 +1,24 @@
+#!/usr/bin/env python
+import os
 import sys
-sys.path.append("../lib")
-from pyossim import *
+try:
+    ossimlib=os.environ['PYOSSIM_DIR']
+    print ossimlib
+except KeyError:
+    print 'PyOSSIM python bindings not installed or PYOSSIM_DIR not set.'
+    print 'Contact PlanetSasha developers'
+    print 'https://github.com/epifanio/planetsasha'
+    print 'Good Bye :('
+    sys.exit(1)
+
+
+
+pyossim_path = os.getenv('PYOSSIM_DIR')
+sys.path.append(pyossim_path)
+
+from lib.pyossim import *
+
+
 import numpy as np
 def pyossimNumpyTest(argc,argv):
     if argc < 2:
